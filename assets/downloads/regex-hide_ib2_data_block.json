@@ -1,0 +1,17 @@
+{
+    "id": "b5e044f3-334e-4421-af50-5856573f775f",
+    "scriptName": "Hide ib2_data block",
+    "findRegex": "/<ib2_data>[\\s\\S]*?(?:<\\/ib2_data>|$)/gi",
+    "replaceString": "",
+    "trimStrings": [],
+    "placement": [
+        2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+}

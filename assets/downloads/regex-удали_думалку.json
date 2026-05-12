@@ -1,0 +1,17 @@
+{
+    "id": "f9d96fe9-b352-43c0-aeb4-92542974756c",
+    "scriptName": "Удали думалку",
+    "disabled": false,
+    "runOnEdit": true,
+    "findRegex": "/^.*?<\\/think(?:ing)?>\\s*/gis",
+    "trimStrings": [],
+    "replaceString": "",
+    "placement": [
+        2
+    ],
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null,
+    "markdownOnly": true,
+    "promptOnly": true
+}

@@ -1,0 +1,17 @@
+{
+    "id": "a7c3e1f2-8b4d-4f6a-9e2c-1d5b7a3f8c0e",
+    "scriptName": "Visual Gen Cleaner",
+    "disabled": false,
+    "runOnEdit": true,
+    "findRegex": "<div style=\"max-width:680px[\\s\\S]*?<\\/div>\\s*<\\/div>",
+    "trimStrings": [],
+    "replaceString": "",
+    "placement": [
+        2
+    ],
+    "substituteRegex": 0,
+    "minDepth": 1,
+    "maxDepth": null,
+    "markdownOnly": false,
+    "promptOnly": true
+}

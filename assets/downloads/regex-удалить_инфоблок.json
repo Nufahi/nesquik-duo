@@ -1,0 +1,17 @@
+{
+    "id": "55627cb6-fd7c-4371-95bc-b7c994873107",
+    "scriptName": "Удалить инфоблок",
+    "findRegex": "/<infoblock>[\\s\\S]*?</infoblock>/g",
+    "replaceString": "",
+    "trimStrings": [],
+    "placement": [
+        2
+    ],
+    "disabled": false,
+    "markdownOnly": false,
+    "promptOnly": true,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": 4,
+    "maxDepth": null
+}

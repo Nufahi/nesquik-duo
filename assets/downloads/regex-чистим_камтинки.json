@@ -1,0 +1,17 @@
+{
+    "id": "0e017192-5849-42b6-ba6f-722c23634a91",
+    "scriptName": "Чистим камтинки",
+    "findRegex": "<div style=\"max-width:680px[\\s\\S]*?<\\/div>\\s*<\\/div>",
+    "replaceString": "",
+    "trimStrings": [],
+    "placement": [
+        2
+    ],
+    "disabled": false,
+    "markdownOnly": false,
+    "promptOnly": true,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": 1,
+    "maxDepth": null
+}
