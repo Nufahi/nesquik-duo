@@ -146,6 +146,62 @@
         });
     }
 
+    /* ---------- Hero слайдер: плавная смена картинок ----------
+       Картинки crossfade'ятся раз в ~6 секунд, плюс при каждом возврате
+       в hero-секцию переключаемся на следующий слайд (даёт ощущение «обновления»). */
+    const heroSlides = document.querySelectorAll('.hero-slide');
+    if (heroSlides.length > 1) {
+        let activeIdx = 0;
+        const setActive = (idx) => {
+            heroSlides.forEach((s, i) => s.classList.toggle('is-active', i === idx));
+            activeIdx = idx;
+        };
+        const nextSlide = () => setActive((activeIdx + 1) % heroSlides.length);
+
+        // Автосмена каждые 6 секунд, только когда hero на экране (экономим CPU)
+        let intervalId = null;
+        const startAuto = () => {
+            if (intervalId) return;
+            intervalId = setInterval(nextSlide, 6000);
+        };
+        const stopAuto = () => {
+            if (!intervalId) return;
+            clearInterval(intervalId);
+            intervalId = null;
+        };
+
+        const heroSection = document.getElementById('hero');
+        if (heroSection && 'IntersectionObserver' in window) {
+            // Дополнительный флаг: переключаем слайд каждый раз, когда hero
+            // снова попадает в видимость (после скролла вниз и возврата вверх)
+            let wasOutOfView = false;
+            const heroIO = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        startAuto();
+                        if (wasOutOfView) {
+                            // Вернулись — даём «свежую» картинку
+                            nextSlide();
+                            wasOutOfView = false;
+                        }
+                    } else {
+                        stopAuto();
+                        wasOutOfView = true;
+                    }
+                });
+            }, { threshold: 0.25 });
+            heroIO.observe(heroSection);
+        } else {
+            startAuto();
+        }
+
+        // На всякий случай — пауза, если вкладка не активна
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) stopAuto();
+            else if (heroSection && heroSection.getBoundingClientRect().bottom > 0) startAuto();
+        });
+    }
+
     /* ---------- Принудительное скачивание файлов (Blob) ----------
        Браузеры иногда игнорируют атрибут download для .json/.txt и просто
        открывают файл в новой вкладке. Делаем скачивание через fetch + Blob,

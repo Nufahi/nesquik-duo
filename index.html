@@ -140,7 +140,11 @@
         <div class="hero-visual">
             <div class="hero-image-wrap">
                 <div class="hero-image-glow" aria-hidden="true"></div>
-                <img class="hero-image" src="assets/images/preview-main.png" alt="Превью пресета Nesquik Duo" onerror="this.style.display='none'; this.parentElement.classList.add('no-image');">
+                <!-- Слайды: меняются плавно через CSS-анимацию + JS на скролл -->
+                <div class="hero-slides" data-active="0">
+                    <img class="hero-image hero-slide is-active" src="assets/images/preview-main.png" alt="Превью пресета Nesquik Duo" onerror="this.style.display='none'">
+                    <img class="hero-image hero-slide" src="assets/images/preview-main2.png" alt="Превью пресета Nesquik Duo · вариант 2" onerror="this.style.display='none'">
+                </div>
                 <div class="hero-image-fallback" aria-hidden="true">
                     <svg class="placeholder-svg" viewBox="0 0 24 24"><use href="#i-palette"/></svg>
                     <span class="placeholder-text">preview-main.png</span>

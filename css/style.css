@@ -514,10 +514,16 @@ code, pre {
     50%      { opacity: 1; transform: scale(1.04); }
 }
 
-/* Сама картинка — растворяется снизу через mask-image */
-.hero-image {
+/* Контейнер слайдов поверх свечения */
+.hero-slides {
     position: relative;
     z-index: 1;
+    width: 100%;
+    height: 100%;
+}
+
+/* Каждая картинка-слайд: лежат друг на друге, активная видна */
+.hero-image {
     width: 100%;
     height: 100%;
     object-fit: contain;
@@ -527,6 +533,20 @@ code, pre {
         drop-shadow(0 8px 20px rgba(255, 158, 200, 0.28));
     -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 75%, rgba(0,0,0,0.7) 88%, transparent 100%);
             mask-image: linear-gradient(to bottom, #000 0%, #000 75%, rgba(0,0,0,0.7) 88%, transparent 100%);
+}
+
+.hero-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transform: scale(0.985);
+    transition: opacity 1.2s ease, transform 1.2s ease;
+    will-change: opacity, transform;
+}
+
+.hero-slide.is-active {
+    opacity: 1;
+    transform: scale(1);
 }
 
 /* Заглушка если картинки нет */
