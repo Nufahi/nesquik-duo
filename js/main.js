@@ -38,10 +38,16 @@
     /* ---------- Плавная прокрутка с учётом навбара ---------- */
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', (e) => {
-            const target = document.querySelector(anchor.getAttribute('href'));
+            const href = anchor.getAttribute('href');
+            if (href === '#') return;
+            const target = document.querySelector(href);
             if (!target) return;
             e.preventDefault();
-            const top = target.getBoundingClientRect().top + window.scrollY - 90;
+            // Чуть больше отступ для не-секций (карточек, контента),
+            // чтобы они не упирались впритык под навбар
+            const isSection = target.tagName === 'SECTION';
+            const offset = isSection ? 90 : 110;
+            const top = target.getBoundingClientRect().top + window.scrollY - offset;
             window.scrollTo({ top, behavior: 'smooth' });
         });
     });
