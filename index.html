@@ -122,6 +122,10 @@
                     <span>Скачать пресет</span>
                     <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-down"/></svg>
                 </a>
+                <a href="#version-fresh" class="btn btn-fresh">
+                    <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-heart"/></svg>
+                    <span>Последняя версия</span>
+                </a>
                 <a href="#regex" class="btn btn-secondary">
                     <span>Регексы</span>
                 </a>
@@ -246,7 +250,7 @@
             </article>
 
             <!-- Карточка свежей версии (соло, по центру снизу) -->
-            <article class="version-card-new version-card-fresh card-center">
+            <article id="version-fresh" class="version-card-new version-card-fresh card-center">
                 <div class="version-badge badge-fresh">
                     <svg class="i-inline" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-heart"/></svg>
                     fresh
@@ -355,23 +359,7 @@
         </div>
     </section>
 
-    <!-- ИНСТРУКЦИЯ -->
-    <section id="install" class="section">
-        <div class="install-guide">
-            <h3>
-                <svg class="i-inline" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-sparkle"/></svg>
-                Как установить
-                <svg class="i-inline" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-sparkle"/></svg>
-            </h3>
-            <ol class="install-steps">
-                <li><b>Скачай</b> нужный файл пресета выше</li>
-                <li>Открой <b>SillyTavern</b> и перейди в <code>AI Response Configuration</code></li>
-                <li>Нажми <b>Import Preset</b> и выбери файл <code>.json</code></li>
-                <li>Для регексов: <code>Extensions → Regex → Import</code></li>
-                <li>Наслаждайся <span class="heart" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-heart"/></svg></span></li>
-            </ol>
-        </div>
-    </section>
+
 
     <!-- РАСШИРЕНИЯ -->
     <section id="extensions" class="section section-alt">

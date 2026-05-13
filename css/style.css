@@ -638,6 +638,43 @@ code, pre {
     background: white;
 }
 
+/* Fresh-кнопка — мерцающий пастельный градиент в стиле fresh-карточки */
+.btn-fresh {
+    background: linear-gradient(135deg, #ffb4dc, #d4a8ff, #b8d4ff, #ffb4dc);
+    background-size: 250% 250%;
+    color: white;
+    box-shadow: var(--shadow-md);
+    animation: btn-fresh-shift 5s ease-in-out infinite;
+    position: relative;
+}
+
+.btn-fresh::after {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, #ffb4dc, #d4a8ff, #b8d4ff);
+    background-size: 250% 250%;
+    filter: blur(14px);
+    opacity: 0.5;
+    z-index: -1;
+    animation: btn-fresh-shift 5s ease-in-out infinite;
+}
+
+.btn-fresh:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-fresh:hover::after {
+    opacity: 0.75;
+}
+
+@keyframes btn-fresh-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50%      { background-position: 100% 50%; }
+}
+
 .btn-small {
     padding: 10px 20px;
     font-size: 0.85rem;
