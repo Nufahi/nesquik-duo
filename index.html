@@ -92,8 +92,6 @@
         <nav class="nav-links">
             <a href="#versions">Версии</a>
             <a href="#regex">Регексы</a>
-            <a href="#scripts">Скрипты</a>
-            <a href="#download">Скачать</a>
             <a href="#extensions">Расширения</a>
         </nav>
         <button class="burger" aria-label="Меню" aria-expanded="false">
@@ -116,12 +114,12 @@
                 шоколадного счастья в мире твоих любимых ролевых чатов.
             </p>
             <div class="hero-buttons">
-                <a href="#download" class="btn btn-primary">
+                <a href="#versions" class="btn btn-primary">
                     <span>Скачать пресет</span>
                     <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-down"/></svg>
                 </a>
-                <a href="#versions" class="btn btn-secondary">
-                    <span>Версии пресета</span>
+                <a href="#regex" class="btn btn-secondary">
+                    <span>Регексы</span>
                 </a>
             </div>
             <div class="hero-stats">
@@ -135,18 +133,17 @@
                 </div>
                 <div class="stat">
                     <span class="stat-value">3</span>
-                    <span class="stat-label">скрипта THelper</span>
+                    <span class="stat-label">пресета</span>
                 </div>
             </div>
         </div>
         <div class="hero-visual">
-            <div class="hero-card">
-                <div class="hero-card-inner">
-                    <img src="assets/images/preview-main.png" alt="Превью пресета Nesquik Duo" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder');">
-                    <div class="placeholder-content">
-                        <svg class="placeholder-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-palette"/></svg>
-                        <span class="placeholder-text">preview-main.png</span>
-                    </div>
+            <div class="hero-image-wrap">
+                <div class="hero-image-glow" aria-hidden="true"></div>
+                <img class="hero-image" src="assets/images/preview-main.png" alt="Превью пресета Nesquik Duo" onerror="this.style.display='none'; this.parentElement.classList.add('no-image');">
+                <div class="hero-image-fallback" aria-hidden="true">
+                    <svg class="placeholder-svg" viewBox="0 0 24 24"><use href="#i-palette"/></svg>
+                    <span class="placeholder-text">preview-main.png</span>
                 </div>
             </div>
         </div>
@@ -160,22 +157,22 @@
                 versions
             </span>
             <h2>Версии пресета</h2>
-            <p>Три варианта пресета под разные модели Claude. Выбирай свой и скачивай файл.</p>
+            <p>Выбирай нужный вариант и скачивай файл одним кликом.</p>
         </div>
 
         <div class="version-cards">
 
-            <!-- Карточка Opus (v1 и v2) -->
+            <!-- Карточка Opus (v1 и v2, обе на 4.6) -->
             <article class="version-card-new featured">
                 <div class="version-badge">
                     <svg class="i-inline" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-sparkle"/></svg>
                     Claude Opus
                 </div>
                 <h3>Nesquik Duo · Opus</h3>
-                <p class="version-desc">Пресет для Claude Opus 4.1 и 4.6. Настроен под флагманские модели Anthropic для максимально живых диалогов.</p>
+                <p class="version-desc">Пресет для Claude Opus 4.6 — флагманская модель Anthropic для живых и насыщенных диалогов.</p>
 
                 <div class="version-variants">
-                    <!-- v2 (Opus 4.6) -->
+                    <!-- v2 -->
                     <div class="variant">
                         <div class="variant-head">
                             <span class="variant-tag tag-latest">latest</span>
@@ -193,10 +190,10 @@
                         </div>
                     </div>
 
-                    <!-- v1 (Opus 4.1) -->
+                    <!-- v1 -->
                     <div class="variant">
                         <div class="variant-head">
-                            <span class="variant-title">v1 · Opus 4.1</span>
+                            <span class="variant-title">v1 · Opus 4.6</span>
                         </div>
                         <div class="variant-actions">
                             <a href="assets/downloads/Несквик дуо.json" class="btn btn-small btn-primary" download>
@@ -232,9 +229,33 @@
                                 <span>Скачать</span>
                                 <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-down"/></svg>
                             </a>
-                            <!-- TODO: добавить ссылку на гайд для Sonnet, когда появится -->
                             <a href="#" class="btn btn-small btn-ghost is-disabled" aria-disabled="true">
                                 <span>Гайд скоро</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Карточка свежей версии (соло, по центру снизу) -->
+            <article class="version-card-new version-card-fresh card-center">
+                <div class="version-badge badge-fresh">
+                    <svg class="i-inline" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-heart"/></svg>
+                    fresh
+                </div>
+                <h3>Nesquik Duo · Свежая версия</h3>
+                <p class="version-desc">Самый свежий вариант пресета — может быть настроен и под Opus, и под Sonnet. Скоро будет доступен.</p>
+
+                <div class="version-variants">
+                    <div class="variant">
+                        <div class="variant-head">
+                            <span class="variant-tag tag-soon">скоро</span>
+                            <span class="variant-title">в разработке</span>
+                        </div>
+                        <div class="variant-actions">
+                            <a href="#" class="btn btn-small btn-primary is-disabled" aria-disabled="true">
+                                <span>Скоро</span>
+                                <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-sparkle"/></svg>
                             </a>
                         </div>
                     </div>
@@ -326,191 +347,8 @@
         </div>
     </section>
 
-    <!-- СКРИПТЫ / Tavern Helper -->
-    <section id="scripts" class="section section-alt">
-        <div class="section-header">
-            <span class="section-tag">
-                <svg class="i-inline" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-script"/></svg>
-                tavern helper
-            </span>
-            <h2>Скрипты для Tavern Helper</h2>
-            <p>Набор JS-скриптов, которые запускаются через расширение JS-Slash-Runner.</p>
-        </div>
-
-        <!-- Установка расширения -->
-        <div class="info-panel">
-            <div class="info-panel-head">
-                <svg class="info-panel-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-puzzle"/></svg>
-                <div>
-                    <h3>Шаг 1. Установите JS-Slash-Runner</h3>
-                    <p>Без этого расширения скрипты работать не будут.</p>
-                </div>
-            </div>
-            <a href="https://github.com/N0VI028/JS-Slash-Runner" class="btn btn-secondary" target="_blank" rel="noopener">
-                <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-github"/></svg>
-                <span>JS-Slash-Runner на GitHub</span>
-                <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-external"/></svg>
-            </a>
-        </div>
-
-        <!-- Карточки скриптов -->
-        <h3 class="subsection-title">Шаг 2. Скачайте скрипты</h3>
-        <div class="script-grid">
-
-            <article class="script-card">
-                <div class="script-preview">
-                    <img src="assets/images/scripts/infoblock-panel.png" alt="Превью скрипта Infoblock Panel" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder');">
-                    <div class="placeholder-content">
-                        <svg class="placeholder-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-script"/></svg>
-                        <span class="placeholder-text">scripts/infoblock-panel.png</span>
-                    </div>
-                </div>
-                <div class="script-body">
-                    <h3>Infoblock Panel</h3>
-                    <p class="script-desc">[описание скрипта — заполни]</p>
-                    <a href="assets/downloads/tavern_helper_script-infoblock-panel.json" class="btn btn-small btn-primary" download>
-                        <span>Скачать</span>
-                        <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-down"/></svg>
-                    </a>
-                </div>
-            </article>
-
-            <article class="script-card">
-                <div class="script-preview">
-                    <img src="assets/images/scripts/msg-bubbles.png" alt="Превью скрипта Msg Bubbles" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder');">
-                    <div class="placeholder-content">
-                        <svg class="placeholder-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-script"/></svg>
-                        <span class="placeholder-text">scripts/msg-bubbles.png</span>
-                    </div>
-                </div>
-                <div class="script-body">
-                    <h3>Msg Bubbles</h3>
-                    <p class="script-desc">[описание скрипта — заполни]</p>
-                    <a href="assets/downloads/tavern_helper_script-msg%20bubbles.json" class="btn btn-small btn-primary" download>
-                        <span>Скачать</span>
-                        <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-down"/></svg>
-                    </a>
-                </div>
-            </article>
-
-            <article class="script-card">
-                <div class="script-preview">
-                    <img src="assets/images/scripts/reflexio.png" alt="Превью скрипта Reflexio" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder');">
-                    <div class="placeholder-content">
-                        <svg class="placeholder-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-script"/></svg>
-                        <span class="placeholder-text">scripts/reflexio.png</span>
-                    </div>
-                </div>
-                <div class="script-body">
-                    <h3>Reflexio</h3>
-                    <p class="script-desc">[описание скрипта — заполни]</p>
-                    <a href="assets/downloads/tavern_helper_script-reflexio.json" class="btn btn-small btn-primary" download>
-                        <span>Скачать</span>
-                        <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-down"/></svg>
-                    </a>
-                </div>
-            </article>
-
-        </div>
-
-        <!-- Гайд: как импортировать скрипты -->
-        <h3 class="subsection-title">Шаг 3. Как импортировать скрипты через Slash-Runner</h3>
-        <div class="guide-steps">
-
-            <div class="guide-step">
-                <div class="guide-step-num">1</div>
-                <div class="guide-step-img">
-                    <img src="assets/images/guides/runner-1.png" alt="Шаг 1: открыть JS-Slash-Runner" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder');">
-                    <div class="placeholder-content">
-                        <svg class="placeholder-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-book"/></svg>
-                        <span class="placeholder-text">guides/runner-1.png</span>
-                    </div>
-                </div>
-                <p class="guide-step-text">[шаг 1 — заполни]</p>
-            </div>
-
-            <div class="guide-step">
-                <div class="guide-step-num">2</div>
-                <div class="guide-step-img">
-                    <img src="assets/images/guides/runner-2.png" alt="Шаг 2: импорт JSON" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder');">
-                    <div class="placeholder-content">
-                        <svg class="placeholder-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-book"/></svg>
-                        <span class="placeholder-text">guides/runner-2.png</span>
-                    </div>
-                </div>
-                <p class="guide-step-text">[шаг 2 — заполни]</p>
-            </div>
-
-            <div class="guide-step">
-                <div class="guide-step-num">3</div>
-                <div class="guide-step-img">
-                    <img src="assets/images/guides/runner-3.png" alt="Шаг 3: активация скрипта" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder');">
-                    <div class="placeholder-content">
-                        <svg class="placeholder-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-book"/></svg>
-                        <span class="placeholder-text">guides/runner-3.png</span>
-                    </div>
-                </div>
-                <p class="guide-step-text">[шаг 3 — заполни]</p>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- СКАЧАТЬ -->
-    <section id="download" class="section">
-        <div class="section-header">
-            <span class="section-tag">
-                <svg class="i-inline" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-down"/></svg>
-                download
-            </span>
-            <h2>Скачать всё</h2>
-            <p>Все файлы пресета — в одном месте. Выбери то, что нужно.</p>
-        </div>
-
-        <div class="download-cards">
-
-            <article class="download-card featured">
-                <div class="download-icon-wrap">
-                    <svg class="download-icon-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-sparkle"/></svg>
-                </div>
-                <h3>Nesquik Duo v2</h3>
-                <p class="download-desc">Актуальный пресет для Claude Opus 4.6</p>
-                <span class="download-size">.json</span>
-                <a href="assets/downloads/Несквик дуо v.2.json" class="btn btn-primary" download>
-                    <span>Скачать v2</span>
-                    <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-down"/></svg>
-                </a>
-            </article>
-
-            <article class="download-card">
-                <div class="download-icon-wrap">
-                    <svg class="download-icon-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-cup"/></svg>
-                </div>
-                <h3>Nesquik Duo v1</h3>
-                <p class="download-desc">Пресет для Claude Opus 4.1</p>
-                <span class="download-size">.json</span>
-                <a href="assets/downloads/Несквик дуо.json" class="btn btn-secondary" download>
-                    <span>Скачать v1</span>
-                    <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-down"/></svg>
-                </a>
-            </article>
-
-            <article class="download-card">
-                <div class="download-icon-wrap">
-                    <svg class="download-icon-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-star"/></svg>
-                </div>
-                <h3>Nesquik Duo Sonnet</h3>
-                <p class="download-desc">Отдельный пресет для Claude Sonnet 4.6</p>
-                <span class="download-size">.json</span>
-                <a href="assets/downloads/Несквик дуо соннет.json" class="btn btn-secondary" download>
-                    <span>Скачать Sonnet</span>
-                    <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-down"/></svg>
-                </a>
-            </article>
-
-        </div>
-
-        <!-- Инструкция -->
+    <!-- ИНСТРУКЦИЯ -->
+    <section id="install" class="section">
         <div class="install-guide">
             <h3>
                 <svg class="i-inline" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-sparkle"/></svg>
@@ -522,7 +360,6 @@
                 <li>Открой <b>SillyTavern</b> и перейди в <code>AI Response Configuration</code></li>
                 <li>Нажми <b>Import Preset</b> и выбери файл <code>.json</code></li>
                 <li>Для регексов: <code>Extensions → Regex → Import</code></li>
-                <li>Для скриптов: сначала установи <b>JS-Slash-Runner</b>, затем импортируй JSON через него</li>
                 <li>Наслаждайся <span class="heart" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-heart"/></svg></span></li>
             </ol>
         </div>
@@ -623,8 +460,6 @@
                 <h4>Навигация</h4>
                 <a href="#versions">Версии</a>
                 <a href="#regex">Регексы</a>
-                <a href="#scripts">Скрипты</a>
-                <a href="#download">Скачать</a>
                 <a href="#extensions">Расширения</a>
             </div>
             <div class="footer-links">
