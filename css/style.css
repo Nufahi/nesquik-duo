@@ -1942,6 +1942,33 @@ code, pre {
     align-self: flex-start;
 }
 
+.extension-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+}
+
+/* Кнопка Telegram — мягкий голубой/розовый пастельный акцент */
+.btn-tg {
+    background: linear-gradient(135deg, rgba(184, 213, 255, 0.85), rgba(214, 195, 255, 0.85));
+    border: 2px solid rgba(139, 186, 255, 0.45);
+    color: #5b7bce;
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-tg:hover {
+    background: linear-gradient(135deg, #b8d5ff, #d6c3ff);
+    border-color: #8bbaff;
+    color: #4862b3;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(139, 186, 255, 0.3);
+}
+
+.btn-tg .btn-icon {
+    color: inherit;
+}
+
 /* ---------- code-download с SVG ---------- */
 .code-download {
     display: inline-flex;
