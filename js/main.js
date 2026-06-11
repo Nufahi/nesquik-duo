@@ -5,6 +5,17 @@
 (() => {
     'use strict';
 
+    /* ---------- Переключатель темы (светлая/тёмная) ---------- */
+    const themeToggle = document.querySelector('.theme-toggle');
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            const root = document.documentElement;
+            const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            root.setAttribute('data-theme', next);
+            try { localStorage.setItem('nd-theme', next); } catch { /* ignore */ }
+        });
+    }
+
     /* ---------- Навигация: эффект прокрутки ---------- */
     const navbar = document.querySelector('.navbar');
     const onScroll = () => {
@@ -95,7 +106,7 @@
 
     /* ---------- Reveal-анимация при прокрутке ---------- */
     const revealTargets = document.querySelectorAll(
-        '.version-card-new, .code-card, .script-card, .guide-step, .extension-card, .download-card, .install-guide, .info-panel, .section-header'
+        '.version-card-new, .code-card, .prompt-card, .script-card, .guide-step, .extension-card, .download-card, .install-guide, .info-panel, .section-header, .credits-screen, .regex-hint'
     );
 
     revealTargets.forEach(el => el.classList.add('reveal'));

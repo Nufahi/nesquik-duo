@@ -3,12 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Пресет Nesquik Duo для SillyTavern — пастельный, воздушный и нежный пресет для Claude моделей.">
+    <meta name="description" content="Nesquik Duo — пастельный пресет для SillyTavern под Claude Opus и другие модели Claude. Версии пресета, регексы, промпты и расширения.">
     <title>Nesquik Duo · Пресет для SillyTavern</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Comfortaa:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Comfortaa:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- Применяем сохранённую тему до отрисовки страницы (без мигания) -->
+    <script>
+        (function () {
+            try {
+                var theme = localStorage.getItem('nd-theme');
+                if (!theme) {
+                    theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                }
+                document.documentElement.setAttribute('data-theme', theme);
+            } catch (e) { /* приватный режим и т.п. — просто остаёмся на светлой */ }
+        })();
+    </script>
 
     <!-- SVG-спрайт с иконками -->
     <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -65,6 +78,22 @@
             <symbol id="i-telegram" viewBox="0 0 24 24">
                 <path fill="currentColor" d="M21.7 3.3a1.2 1.2 0 00-1.3-.2L2.7 10.5c-.9.4-.9 1.7 0 2l4.6 1.5 1.8 5.6c.2.7 1.1.9 1.6.4l2.7-2.5 4.7 3.4c.7.5 1.7.1 1.9-.7l3.2-14.4c.1-.4 0-.9-.3-1.3l-1.2-1.2zM9.4 14.5l9-7.4-7.4 8.5v3.7l-1.6-4.8z"/>
             </symbol>
+            <!-- Солнце (светлая тема) -->
+            <symbol id="i-sun" viewBox="0 0 24 24">
+                <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 17a5 5 0 100-10 5 5 0 000 10zM12 1v2m0 18v2M4.2 4.2l1.4 1.4m12.8 12.8l1.4 1.4M1 12h2m18 0h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/>
+            </symbol>
+            <!-- Луна (тёмная тема) -->
+            <symbol id="i-moon" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/>
+            </symbol>
+            <!-- Копирование -->
+            <symbol id="i-copy" viewBox="0 0 24 24">
+                <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 9h11a1 1 0 011 1v11a1 1 0 01-1 1H9a1 1 0 01-1-1V10a1 1 0 011-1zM5 15H4a1 1 0 01-1-1V3a1 1 0 011-1h11a1 1 0 011 1v1"/>
+            </symbol>
+            <!-- Картинка -->
+            <symbol id="i-image" viewBox="0 0 24 24">
+                <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 4h16a1 1 0 011 1v14a1 1 0 01-1 1H4a1 1 0 01-1-1V5a1 1 0 011-1zm4.5 6a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM21 15l-5-5-11 11"/>
+            </symbol>
         </defs>
     </svg>
 </head>
@@ -96,11 +125,18 @@
         <nav class="nav-links">
             <a href="#versions">Версии</a>
             <a href="#regex">Регексы</a>
+            <a href="#prompts">Промпты</a>
             <a href="#extensions">Расширения</a>
         </nav>
-        <button class="burger" aria-label="Меню" aria-expanded="false">
-            <span></span><span></span><span></span>
-        </button>
+        <div class="nav-actions">
+            <button class="theme-toggle" type="button" aria-label="Переключить тему" title="Переключить тему">
+                <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-sun"/></svg>
+                <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-moon"/></svg>
+            </button>
+            <button class="burger" aria-label="Меню" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
     </header>
 
     <!-- HERO -->
@@ -114,8 +150,9 @@
                 <span class="title-gradient">Nesquik Duo</span>
             </h1>
             <p class="hero-subtitle">
-                Пастельный, воздушный и нежный пресет для моделей Claude — два оттенка
-                шоколадного счастья в мире твоих любимых ролевых чатов.
+                Пастельный и воздушный пресет для Claude Opus и других моделей Claude.
+                Тёплые ответы, аккуратное форматирование и набор регексов,
+                которые наводят уют в твоих ролевых чатах.
             </p>
             <div class="hero-buttons">
                 <a href="#version-cards" class="btn btn-primary">
@@ -136,7 +173,7 @@
                     <span class="stat-label">актуальная версия</span>
                 </div>
                 <div class="stat">
-                    <span class="stat-value">6</span>
+                    <span class="stat-value">7</span>
                     <span class="stat-label">регексов</span>
                 </div>
                 <div class="stat">
@@ -285,17 +322,18 @@
                 regex
             </span>
             <h2>Регулярные выражения</h2>
-            <p>Готовые регексы для красивого форматирования сообщений. Скачивай и импортируй в SillyTavern через <code>Extensions → Regex → Import</code>.</p>
+            <p>Готовые регексы под пресет: одни делают чат красивым, другие чистят промпт от лишнего, чтобы не тратить токены. Скачивай и импортируй в SillyTavern через <code>Extensions → Regex → Import</code>.</p>
         </div>
 
         <div class="code-grid">
 
             <article class="code-card">
                 <header class="code-card-header">
-                    <h3>Adaptive Bubbles v4</h3>
+                    <h3>Сообщения</h3>
+                    <span class="code-tag tag-display">отображение</span>
                 </header>
-                <p class="code-desc">[описание регекса — заполни]</p>
-                <a href="assets/downloads/regex-messages__adaptive_bubbles_v4.json" class="code-download" download>
+                <p class="code-desc">Превращает переписку в чате в настоящие пузырьки мессенджера: имя контакта, входящие и исходящие сообщения. Пиши в формате <code>Имя</code> + <code>(in)</code>/<code>(out)</code> — остальное регекс сделает сам.</p>
+                <a href="assets/downloads/regex-сообщения.json" class="code-download" download>
                     <svg class="i-inline" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-down"/></svg>
                     скачать JSON
                 </a>
@@ -303,10 +341,23 @@
 
             <article class="code-card">
                 <header class="code-card-header">
-                    <h3>Hide IB2 Data Block</h3>
+                    <h3>Рамочка</h3>
+                    <span class="code-tag tag-display">отображение</span>
                 </header>
-                <p class="code-desc">[описание регекса — заполни]</p>
-                <a href="assets/downloads/regex-hide_ib2_data_block.json" class="code-download" download>
+                <p class="code-desc">Оборачивает сгенерированные картинки в аккуратную рамку, которая подстраивается под цвета твоей темы SillyTavern. Картинки перестают выглядеть «вставленными» и становятся частью чата.</p>
+                <a href="assets/downloads/regex-рамочка.json" class="code-download" download>
+                    <svg class="i-inline" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-down"/></svg>
+                    скачать JSON
+                </a>
+            </article>
+
+            <article class="code-card">
+                <header class="code-card-header">
+                    <h3>Сдираем весь HTML</h3>
+                    <span class="code-tag tag-prompt">промпт</span>
+                </header>
+                <p class="code-desc">Полностью вычищает HTML-теги из текста перед отправкой модели. Claude видит чистую прозу вместо разметки — меньше токенов, меньше шансов, что модель начнёт подражать тегам.</p>
+                <a href="assets/downloads/regex-сдираем_весь_html.json" class="code-download" download>
                     <svg class="i-inline" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-down"/></svg>
                     скачать JSON
                 </a>
@@ -315,8 +366,9 @@
             <article class="code-card">
                 <header class="code-card-header">
                     <h3>Visual Gen Cleaner</h3>
+                    <span class="code-tag tag-prompt">промпт</span>
                 </header>
-                <p class="code-desc">[описание регекса — заполни]</p>
+                <p class="code-desc">Убирает из промпта декоративные блоки визуальной генерации, чтобы модель не получала тонны служебной разметки из прошлых сообщений.</p>
                 <a href="assets/downloads/regex-visual_gen_cleaner.json" class="code-download" download>
                     <svg class="i-inline" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-down"/></svg>
                     скачать JSON
@@ -326,8 +378,9 @@
             <article class="code-card">
                 <header class="code-card-header">
                     <h3>Удали думалку</h3>
+                    <span class="code-tag tag-prompt">промпт</span>
                 </header>
-                <p class="code-desc">[описание регекса — заполни]</p>
+                <p class="code-desc">Срезает блоки размышлений <code>&lt;think&gt;</code> из истории перед отправкой. Claude не перечитывает свои старые мысли, а контекст остаётся лёгким.</p>
                 <a href="assets/downloads/regex-удали_думалку.json" class="code-download" download>
                     <svg class="i-inline" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-down"/></svg>
                     скачать JSON
@@ -337,8 +390,9 @@
             <article class="code-card">
                 <header class="code-card-header">
                     <h3>Удалить инфоблок</h3>
+                    <span class="code-tag tag-prompt">промпт</span>
                 </header>
-                <p class="code-desc">[описание регекса — заполни]</p>
+                <p class="code-desc">Вырезает блоки <code>&lt;infoblock&gt;</code> из старых сообщений, отправляемых модели. На экране инфоблоки остаются, а в промпт не попадают.</p>
                 <a href="assets/downloads/regex-удалить_инфоблок.json" class="code-download" download>
                     <svg class="i-inline" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-down"/></svg>
                     скачать JSON
@@ -347,13 +401,79 @@
 
             <article class="code-card">
                 <header class="code-card-header">
-                    <h3>Чистим картинки</h3>
+                    <h3>Чистим камтинки</h3>
+                    <span class="code-tag tag-prompt">промпт</span>
                 </header>
-                <p class="code-desc">[описание регекса — заполни]</p>
+                <p class="code-desc">Удаляет из промпта контейнеры со сгенерированными картинками. Картинки видишь только ты — модель получает чистый текст без мусорной обвязки.</p>
                 <a href="assets/downloads/regex-чистим_камтинки.json" class="code-download" download>
                     <svg class="i-inline" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-down"/></svg>
                     скачать JSON
                 </a>
+            </article>
+
+        </div>
+
+        <p class="regex-hint">
+            <svg class="i-inline" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-sparkle"/></svg>
+            Метка <strong>промпт</strong> — регекс чистит текст перед отправкой модели, метка <strong>отображение</strong> — красиво оформляет сообщения на экране.
+        </p>
+    </section>
+
+
+
+    <!-- ПРОМПТЫ -->
+    <section id="prompts" class="section section-alt">
+        <div class="section-header">
+            <span class="section-tag">
+                <svg class="i-inline" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-script"/></svg>
+                prompts
+            </span>
+            <h2>Промпты</h2>
+            <p>Полезные промпты, которые хорошо дружат с пресетом. Жми на кнопку — текст скопируется в буфер, останется только вставить.</p>
+        </div>
+
+        <!-- Подраздел: Картинки -->
+        <h3 class="subsection-title">
+            <svg class="i-inline" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-image"/></svg>
+            Картинки
+        </h3>
+
+        <div class="prompt-grid">
+
+            <article class="prompt-card">
+                <header class="prompt-card-header">
+                    <h4>Генерация в сцене</h4>
+                    <button class="copy-btn" type="button" data-copy="prompt-img-scene">копировать</button>
+                </header>
+                <p class="prompt-desc">Просит модель время от времени дополнять ответ картинкой — когда в сцене происходит что-то визуально интересное. Вставляй в системный промпт или авторские заметки.</p>
+                <pre class="code-block"><code id="prompt-img-scene">When the scene contains a visually striking moment (a new location, a dramatic action, a character reveal), append one image instruction at the end of your reply. Describe the shot like a film still: subject, framing, lighting, mood. Keep it under 60 words and never interrupt the prose with it.</code></pre>
+            </article>
+
+            <article class="prompt-card">
+                <header class="prompt-card-header">
+                    <h4>Портрет персонажа</h4>
+                    <button class="copy-btn" type="button" data-copy="prompt-img-portrait">копировать</button>
+                </header>
+                <p class="prompt-desc">Отправь в чат — и получишь подробное визуальное описание персонажа, готовое для любого генератора картинок.</p>
+                <pre class="code-block"><code id="prompt-img-portrait">Describe {{char}} as a detailed image generation prompt: appearance, outfit, pose, expression, lighting and atmosphere. Write it as one comma-separated prompt line, English, no commentary, no extra text before or after.</code></pre>
+            </article>
+
+            <article class="prompt-card">
+                <header class="prompt-card-header">
+                    <h4>Кадр из текущего момента</h4>
+                    <button class="copy-btn" type="button" data-copy="prompt-img-snapshot">копировать</button>
+                </header>
+                <p class="prompt-desc">Превращает текущий момент ролеплея в готовый промпт-«скриншот»: кто в кадре, что происходит, какое настроение.</p>
+                <pre class="code-block"><code id="prompt-img-snapshot">Freeze the current scene and turn it into an image generation prompt. Include: who is in frame, what they are doing, the setting, time of day, colour palette and overall mood. One paragraph, English, written as a prompt — not as a story.</code></pre>
+            </article>
+
+            <article class="prompt-card">
+                <header class="prompt-card-header">
+                    <h4>Пастельный стиль Nesquik</h4>
+                    <button class="copy-btn" type="button" data-copy="prompt-img-style">копировать</button>
+                </header>
+                <p class="prompt-desc">Стилевой «хвостик» для генераторов картинок — добавляй в конец любого промпта, чтобы картинки получались в мягкой пастельной эстетике пресета.</p>
+                <pre class="code-block"><code id="prompt-img-style">soft pastel palette, pink and lavender tones, dreamy diffused lighting, gentle film grain, cozy atmosphere, high detail, delicate linework</code></pre>
             </article>
 
         </div>
@@ -362,14 +482,14 @@
 
 
     <!-- РАСШИРЕНИЯ -->
-    <section id="extensions" class="section section-alt">
+    <section id="extensions" class="section">
         <div class="section-header">
             <span class="section-tag">
                 <svg class="i-inline" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-puzzle"/></svg>
                 extensions
             </span>
             <h2>Мои расширения</h2>
-            <p>Дополнительные расширения для SillyTavern, которые я сделала — устанавливаются через GitHub URL. Описание и пост можно почитать в Telegram-канале.</p>
+            <p>Расширения для SillyTavern, которые я сделала сама. Устанавливаются за минуту через <code>Extensions → Install extension</code> по ссылке с GitHub, а подробности — в постах в Telegram.</p>
         </div>
 
         <div class="extensions-grid">
@@ -379,7 +499,7 @@
                     <svg class="extension-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-palette"/></svg>
                     <h3>ST-ThemeAssist</h3>
                 </div>
-                <p class="extension-desc">[описание расширения — заполни]</p>
+                <p class="extension-desc">Помощник по темам: помогает настраивать внешний вид SillyTavern без копания в CSS. Меняешь цвета и элементы — сразу видишь результат.</p>
                 <div class="extension-actions">
                     <a href="https://github.com/Nufahi/ST-ThemeAssist" class="btn btn-small btn-ghost" target="_blank" rel="noopener">
                         <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-github"/></svg>
@@ -397,7 +517,7 @@
                     <svg class="extension-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-book"/></svg>
                     <h3>My Lorebook Manager</h3>
                 </div>
-                <p class="extension-desc">[описание расширения — заполни]</p>
+                <p class="extension-desc">Удобное управление лорбуками: быстрый доступ к записям, понятная структура и меньше кликов, когда лорбуков стало слишком много.</p>
                 <div class="extension-actions">
                     <a href="https://github.com/Nufahi/My-lorebook-manager" class="btn btn-small btn-ghost" target="_blank" rel="noopener">
                         <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-github"/></svg>
@@ -415,7 +535,7 @@
                     <svg class="extension-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-code"/></svg>
                     <h3>CSS Inspector</h3>
                 </div>
-                <p class="extension-desc">[описание расширения — заполни]</p>
+                <p class="extension-desc">Инспектор элементов прямо внутри SillyTavern: кликаешь по любому элементу интерфейса — видишь его CSS-классы. Незаменим, когда пишешь свою тему.</p>
                 <div class="extension-actions">
                     <a href="https://github.com/Nufahi/SillyTavern-CSSInspector" class="btn btn-small btn-ghost" target="_blank" rel="noopener">
                         <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-github"/></svg>
@@ -433,7 +553,7 @@
                     <svg class="extension-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-script"/></svg>
                     <h3>Char Prompt Toggles</h3>
                 </div>
-                <p class="extension-desc">[описание расширения — заполни]</p>
+                <p class="extension-desc">Персональные переключатели промптов для каждого персонажа: включай и выключай нужные блоки на лету, не перелопачивая весь пресет.</p>
                 <div class="extension-actions">
                     <a href="https://github.com/Nufahi/char-prompt-toggles" class="btn btn-small btn-ghost" target="_blank" rel="noopener">
                         <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-github"/></svg>
@@ -449,6 +569,56 @@
         </div>
     </section>
 
+    <!-- БЛАГОДАРНОСТИ -->
+    <section id="credits" class="section section-alt">
+        <div class="section-header">
+            <span class="section-tag">
+                <svg class="i-inline" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-heart"/></svg>
+                credits
+            </span>
+            <h2>Благодарности</h2>
+            <p>Nesquik Duo не появился бы без этих чудесных людей (и не только людей).</p>
+        </div>
+
+        <div class="credits-screen" aria-label="Титры с благодарностями">
+            <div class="credits-roll">
+                <div class="credits-track">
+                    <p class="credits-heading">· Nesquik Duo представляет ·</p>
+                    <!--
+                        Формат: имя + короткая милая подпись.
+                        Замени примеры ниже на свои благодарности —
+                        просто скопируй блок .credit и поменяй текст.
+                    -->
+                    <div class="credit">
+                        <span class="credit-name">Аня</span>
+                        <span class="credit-note">за терпение и магию</span>
+                    </div>
+                    <div class="credit">
+                        <span class="credit-name">Маша</span>
+                        <span class="credit-note">за идеи в 3 ночи</span>
+                    </div>
+                    <div class="credit">
+                        <span class="credit-name">Кот</span>
+                        <span class="credit-note">за моральную поддержку</span>
+                    </div>
+                    <div class="credit">
+                        <span class="credit-name">Тестеры пресета</span>
+                        <span class="credit-note">за смелость и баг-репорты</span>
+                    </div>
+                    <div class="credit">
+                        <span class="credit-name">Комьюнити SillyTavern</span>
+                        <span class="credit-note">за вдохновение каждый день</span>
+                    </div>
+                    <div class="credit">
+                        <span class="credit-name">Ты</span>
+                        <span class="credit-note">за то, что дочитал(а) до титров ♡</span>
+                    </div>
+                    <p class="credits-heading credits-end">· конец ·</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- FOOTER -->
     <footer class="footer">
         <div class="footer-content">
@@ -457,13 +627,15 @@
                     <svg class="logo-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-sparkle"/></svg>
                     <span class="logo-text">Nesquik<span class="logo-duo">Duo</span></span>
                 </div>
-                <p class="footer-tagline">Пастельный пресет для SillyTavern</p>
+                <p class="footer-tagline">Пастельный пресет для SillyTavern под Claude Opus и другие модели Claude</p>
             </div>
             <div class="footer-links">
                 <h4>Навигация</h4>
                 <a href="#versions">Версии</a>
                 <a href="#regex">Регексы</a>
+                <a href="#prompts">Промпты</a>
                 <a href="#extensions">Расширения</a>
+                <a href="#credits">Благодарности</a>
             </div>
             <div class="footer-links">
                 <h4>Ссылки</h4>

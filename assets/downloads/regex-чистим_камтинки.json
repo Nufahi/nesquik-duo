@@ -1,7 +1,7 @@
 {
-    "id": "0e017192-5849-42b6-ba6f-722c23634a91",
+    "id": "96e06c53-6337-4f70-9ca9-c835ce256924",
     "scriptName": "Чистим камтинки",
-    "findRegex": "<div style=\"max-width:680px[\\s\\S]*?<\\/div>\\s*<\\/div>",
+    "findRegex": "/<div\\b[^>]*>\\s*<img\\b[^>]*data-iig-instruction=[\\s\\S]*?<\\/div>\\s*<\\/div>/gi",
     "replaceString": "",
     "trimStrings": [],
     "placement": [
@@ -12,6 +12,6 @@
     "promptOnly": true,
     "runOnEdit": true,
     "substituteRegex": 0,
-    "minDepth": 1,
+    "minDepth": 0,
     "maxDepth": null
 }

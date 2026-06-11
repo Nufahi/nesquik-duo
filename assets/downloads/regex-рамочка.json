@@ -1,0 +1,17 @@
+{
+    "id": "74295715-a397-464d-b118-bcd5449ac31c",
+    "scriptName": "Рамочка",
+    "findRegex": "/(?:<div[^>]*>\\s*)*(<img[^>]*data-iig-instruction=[^>]*src=\"\\[IMG:GEN\\]\"[^>]*>)(?:\\s*<\\/div>)*/g",
+    "replaceString": "<div style=\"max-width:420px;margin:14px auto;padding:4px;background:color-mix(in srgb,var(--SmartThemeQuoteColor) 14%,transparent);border:1px solid color-mix(in srgb,var(--SmartThemeQuoteColor) 40%,transparent);border-radius:12px;font-family:inherit;\"><div style=\"border-radius:9px;overflow:hidden;\">$1</div></div>",
+    "trimStrings": [],
+    "placement": [
+        2
+    ],
+    "disabled": false,
+    "markdownOnly": false,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": 0,
+    "maxDepth": null
+}
