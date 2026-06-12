@@ -2315,6 +2315,24 @@ code, pre {
     word-break: break-word;
 }
 
+/* Ссылка под карточкой промпта, по центру */
+.prompt-link {
+    display: block;
+    text-align: center;
+    margin-top: 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--violet-400);
+    text-decoration: none;
+    word-break: break-all;
+    transition: color var(--t-fast);
+}
+
+.prompt-link:hover {
+    color: var(--violet-300);
+    text-decoration: underline;
+}
+
 .subsection-title .i-inline {
     width: 18px;
     height: 18px;
