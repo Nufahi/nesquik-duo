@@ -33,6 +33,11 @@
     /* Градиенты */
     --grad-main:    linear-gradient(135deg, #ffbcd9 0%, #cfb4ff 50%, #add0ff 100%);
     --grad-soft:    linear-gradient(135deg, #fff0f7 0%, #f5efff 50%, #eaf4ff 100%);
+    /* Задача 2: затемнённые градиенты для кнопок с белым текстом (WCAG AA ≥4.5:1) */
+    --grad-btn:        linear-gradient(135deg, #bf3d85 0%, #7d49d6 50%, #3f6dc7 100%);
+    --grad-btn-hover:  linear-gradient(135deg, #a83373 0%, #6b3bc2 50%, #345cb0 100%);
+    --grad-btn-fresh:       linear-gradient(135deg, #bf3d85, #7d49d6, #3f6dc7, #bf3d85);
+    --grad-btn-fresh-hover: linear-gradient(135deg, #a83373, #6b3bc2, #345cb0, #a83373);
     --grad-pink:    linear-gradient(135deg, #ffbcd9, #ff9ec8);
     --grad-violet:  linear-gradient(135deg, #cfb4ff, #b892ff);
     --grad-blue:    linear-gradient(135deg, #add0ff, #8bbaff);
@@ -40,6 +45,8 @@
 
     /* Семантические поверхности (светлая тема) */
     --bg-grad:          linear-gradient(135deg, #ffd9ea 0%, #e4d4ff 35%, #cfe4ff 75%, #d9e9ff 100%);
+    /* Задача 3: тёмно-фиолетовая подложка из палитры (не серая) */
+    --bg-fallback:      #3a2f52;
     --nav-bg:           rgba(255, 255, 255, 0.72);
     --nav-bg-scrolled:  rgba(255, 255, 255, 0.88);
     --surface:          rgba(255, 255, 255, 0.82);
@@ -93,6 +100,8 @@
     --grad-soft: linear-gradient(135deg, #322a4a 0%, #2d2745 50%, #283048 100%);
 
     --bg-grad:          linear-gradient(135deg, #241f36 0%, #2a2342 35%, #20283f 75%, #252b45 100%);
+    /* Задача 3: тёмная подложка под градиентом для тёмной темы */
+    --bg-fallback:      #1c1830;
     --nav-bg:           rgba(35, 30, 53, 0.72);
     --nav-bg-scrolled:  rgba(35, 30, 53, 0.9);
     --surface:          rgba(45, 39, 67, 0.82);
@@ -127,14 +136,22 @@
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 90px;
+    /* Задача 4: страховка — ничего не вылезает за 100vw */
+    overflow-x: hidden;
+    max-width: 100%;
 }
 
 body {
     font-family: var(--font-body);
     font-weight: 500;
     color: var(--ink);
-    background: var(--bg-grad);
-    background-attachment: fixed;
+    /* Задача 3: тёмный цвет-подложка из палитры под градиентом,
+       чтобы при быстром скролле/перерисовке не было серой полосы снизу.
+       background-attachment: fixed убран — лагает на мобильных. */
+    background-color: var(--bg-fallback);
+    background-image: var(--bg-grad);
+    background-repeat: no-repeat;
+    background-size: cover;
     line-height: 1.6;
     min-height: 100vh;
     overflow-x: hidden;
@@ -545,6 +562,9 @@ code, pre {
     align-items: center;
     justify-content: center;
     animation: card-float 6s ease-in-out infinite;
+    /* Задача 1: запас места под drop-shadow, чтобы тень не обрезалась краем */
+    overflow: visible;
+    padding-bottom: 48px;
 }
 
 @keyframes card-float {
@@ -585,11 +605,9 @@ code, pre {
     height: 100%;
     object-fit: contain;
     object-position: center;
-    filter:
-        drop-shadow(0 20px 40px rgba(184, 146, 255, 0.35))
-        drop-shadow(0 8px 20px rgba(255, 158, 200, 0.28));
-    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 75%, rgba(0,0,0,0.7) 88%, transparent 100%);
-            mask-image: linear-gradient(to bottom, #000 0%, #000 75%, rgba(0,0,0,0.7) 88%, transparent 100%);
+    /* Задача 1: drop-shadow повторяет форму PNG (не квадрат);
+       маска снизу убрана, иначе она обрезала тень. */
+    filter: drop-shadow(0 20px 40px rgba(120, 80, 180, 0.45));
 }
 
 .hero-slide {
@@ -669,15 +687,18 @@ code, pre {
 }
 
 .btn-primary {
-    background: var(--grad-main);
+    /* Задача 2: затемнённый градиент — белый текст даёт контраст ≥4.5:1 (WCAG AA) */
+    background: var(--grad-btn);
     background-size: 200% auto;
-    color: white;
+    color: #fff;
     box-shadow: var(--shadow-md);
 }
 
 .btn-primary:hover {
     transform: translateY(-3px);
     box-shadow: var(--shadow-lg), var(--glow-violet);
+    background: var(--grad-btn-hover);
+    background-size: 200% auto;
     background-position: right center;
 }
 
@@ -697,9 +718,10 @@ code, pre {
 
 /* Fresh-кнопка — мерцающий пастельный градиент в стиле fresh-карточки */
 .btn-fresh {
-    background: linear-gradient(135deg, #ffb4dc, #d4a8ff, #b8d4ff, #ffb4dc);
+    /* Задача 2: затемнённый градиент под белый текст (WCAG AA) */
+    background: var(--grad-btn-fresh);
     background-size: 250% 250%;
-    color: white;
+    color: #fff;
     box-shadow: var(--shadow-md);
     animation: btn-fresh-shift 5s ease-in-out infinite;
     position: relative;
@@ -2291,6 +2313,73 @@ code, pre {
     vertical-align: -3px;
 }
 
+/* ---------- Задача 5: сетка заглушек под картинки-примеры промптов ---------- */
+.prompt-img-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.prompt-img-cell {
+    margin: 0;
+}
+
+.prompt-img-frame {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    /* Пастельный фон из палитры */
+    background: var(--grad-soft);
+    border: 2px dashed rgba(184, 146, 255, 0.4);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--t-med);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.prompt-img-cell:hover .prompt-img-frame {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md), var(--glow-violet);
+    border-color: var(--violet-300);
+}
+
+/* Реальная картинка (когда подставишь свой src) заполняет ячейку */
+.prompt-img-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.prompt-img-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    color: var(--ink-muted);
+}
+
+.prompt-img-icon {
+    width: 48px;
+    height: 48px;
+    color: var(--violet-300);
+    filter: drop-shadow(0 4px 12px rgba(184, 146, 255, 0.3));
+}
+
+.prompt-img-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+    padding: 4px 12px;
+    background: var(--chip-bg);
+    border-radius: var(--r-sm);
+    color: var(--ink-muted);
+}
+
 /* ==========================================================================
    Благодарности: титры
    ========================================================================== */
@@ -2423,4 +2512,96 @@ code, pre {
 
 [data-theme="dark"] .sparkle {
     filter: drop-shadow(0 2px 6px rgba(184, 146, 255, 0.25));
+}
+
+/* ==========================================================================
+   Задача 4: мобильная типографика — текст не вылезает за экран и по центру
+   ========================================================================== */
+@media (max-width: 768px) {
+    /* Контейнеры hero/секций — центрируем и даём внутренние отступы */
+    .hero,
+    .section {
+        text-align: center;
+        margin-inline: auto;
+        padding-inline: 20px;
+    }
+
+    /* Заголовки и параграфы: переносятся аккуратно, не уезжают вбок */
+    .hero-title,
+    .hero-subtitle,
+    .section-header h2,
+    .section-header p,
+    .version-card-new h3,
+    .version-desc,
+    .subsection-title {
+        max-width: 100%;
+        width: auto;            /* убираем возможные фиксированные width */
+        margin-left: auto;
+        margin-right: auto;
+        word-break: normal;
+        overflow-wrap: break-word;
+        hyphens: auto;
+        text-align: center;
+    }
+
+    /* Уменьшаем заголовок hero, чтобы «Nesquik Duo» влезал целиком */
+    .hero-title {
+        font-size: clamp(2.2rem, 11vw, 3rem);
+        line-height: 1.1;
+    }
+
+    .hero-subtitle {
+        font-size: 1.02rem;
+    }
+
+    .section-header h2 {
+        font-size: clamp(1.7rem, 7vw, 2.2rem);
+    }
+}
+
+@media (max-width: 480px) {
+    .hero,
+    .section {
+        padding-inline: 16px;
+    }
+
+    .hero-title,
+    .hero-subtitle,
+    .section-header h2,
+    .section-header p,
+    .version-card-new h3,
+    .version-desc,
+    .subsection-title {
+        max-width: 100%;
+        width: auto;
+        margin-left: auto;
+        margin-right: auto;
+        word-break: normal;
+        overflow-wrap: break-word;
+        hyphens: auto;
+        text-align: center;
+    }
+
+    /* Ещё мельче — чтобы длинные слова точно влезали на узких экранах */
+    .hero-title {
+        font-size: clamp(1.9rem, 13vw, 2.5rem);
+    }
+
+    .hero-subtitle {
+        font-size: 0.96rem;
+    }
+
+    .section-header h2 {
+        font-size: clamp(1.5rem, 8vw, 1.9rem);
+    }
+
+    /* Кнопки hero — на всю ширину, не выпирают за экран */
+    .hero-buttons {
+        width: 100%;
+    }
+
+    .hero-buttons .btn {
+        flex: 1 1 100%;
+        justify-content: center;
+    }
 }

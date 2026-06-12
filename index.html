@@ -9,6 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Comfortaa:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <!-- Задача 3: маскот первого экрана грузим максимально рано -->
+    <link rel="preload" as="image" href="assets/images/preview-main.png" fetchpriority="high">
 
     <!-- Применяем сохранённую тему до отрисовки страницы (без мигания) -->
     <script>
@@ -187,8 +189,9 @@
                 <div class="hero-image-glow" aria-hidden="true"></div>
                 <!-- Слайды: меняются плавно через CSS-анимацию + JS на скролл -->
                 <div class="hero-slides" data-active="0">
-                    <img class="hero-image hero-slide is-active" src="assets/images/preview-main.png" alt="Превью пресета Nesquik Duo" onerror="this.style.display='none'">
-                    <img class="hero-image hero-slide" src="assets/images/preview-main2.png" alt="Превью пресета Nesquik Duo · вариант 2" onerror="this.style.display='none'">
+                    <!-- Задача 3: маскот первого экрана грузим сразу, без lazy, с высоким приоритетом -->
+                    <img class="hero-image hero-slide is-active" src="assets/images/preview-main.png" alt="Превью пресета Nesquik Duo" loading="eager" fetchpriority="high" decoding="async" onerror="this.style.display='none'">
+                    <img class="hero-image hero-slide" src="assets/images/preview-main2.png" alt="Превью пресета Nesquik Duo · вариант 2" loading="eager" fetchpriority="high" decoding="async" onerror="this.style.display='none'">
                 </div>
                 <div class="hero-image-fallback" aria-hidden="true">
                     <svg class="placeholder-svg" viewBox="0 0 24 24"><use href="#i-palette"/></svg>
@@ -475,6 +478,41 @@
                 <p class="prompt-desc">Стилевой «хвостик» для генераторов картинок — добавляй в конец любого промпта, чтобы картинки получались в мягкой пастельной эстетике пресета.</p>
                 <pre class="code-block"><code id="prompt-img-style">soft pastel palette, pink and lavender tones, dreamy diffused lighting, gentle film grain, cozy atmosphere, high detail, delicate linework</code></pre>
             </article>
+
+        </div>
+
+        <!-- ====================================================================
+             Задача 5: Заглушки под будущие картинки-примеры промптов.
+             КУДА КЛАСТЬ ФАЙЛЫ: assets/images/prompts/
+             КАК ЗАМЕНИТЬ ЗАГЛУШКУ НА СВОЮ КАРТИНКУ:
+               1) положи файл в assets/images/prompts/ (например example-1.png);
+               2) либо впиши путь в массив PROMPT_IMAGES в js/main.js
+                  (поле src) — заглушка сама станет картинкой;
+               3) либо просто раскомментируй <img> внутри нужной ячейки ниже
+                  и впиши src/alt вручную.
+             Количество заглушек расширяется: добавляй элементы в массив
+             PROMPT_IMAGES (js/main.js) ИЛИ копируй блок .prompt-img-cell ниже.
+        ===================================================================== -->
+        <h3 class="subsection-title">
+            <svg class="i-inline" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-image"/></svg>
+            Примеры результатов
+        </h3>
+
+        <!-- Сетка генерируется из массива PROMPT_IMAGES в js/main.js.
+             Если JS отключён — показываются статичные заглушки ниже. -->
+        <div class="prompt-img-grid" id="prompt-img-grid">
+
+            <!-- Статичный плейсхолдер-образец (можно копировать сколько нужно).
+                 Чтобы вставить свою картинку — раскомментируй <img> и впиши путь: -->
+            <figure class="prompt-img-cell">
+                <div class="prompt-img-frame">
+                    <!-- <img src="assets/images/prompts/example-1.png" alt="Пример результата"> -->
+                    <span class="prompt-img-placeholder">
+                        <svg class="prompt-img-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-image"/></svg>
+                        <span class="prompt-img-label">изображение</span>
+                    </span>
+                </div>
+            </figure>
 
         </div>
     </section>

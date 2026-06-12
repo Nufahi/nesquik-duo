@@ -289,6 +289,36 @@
         }
     });
 
+    /* ---------- Задача 5: сетка заглушек под картинки-примеры промптов ----------
+       КУДА КЛАСТЬ ФАЙЛЫ: assets/images/prompts/
+       КАК ДОБАВИТЬ/ЗАМЕНИТЬ КАРТИНКУ:
+         • Чтобы вставить готовую картинку — впиши путь в поле src.
+         • Чтобы оставить пустую заглушку — оставь src пустым (src: '').
+         • Чтобы добавить ещё заглушку — просто добавь объект в массив.
+       Количество ячеек = длине массива PROMPT_IMAGES. */
+    const PROMPT_IMAGES = [
+        { src: '', alt: 'Пример результата 1' },
+        { src: '', alt: 'Пример результата 2' },
+        { src: '', alt: 'Пример результата 3' },
+        { src: '', alt: 'Пример результата 4' },
+        // Добавляй сюда новые элементы, например:
+        // { src: 'assets/images/prompts/example-5.png', alt: 'Мой пример' },
+    ];
+
+    const promptImgGrid = document.getElementById('prompt-img-grid');
+    if (promptImgGrid && PROMPT_IMAGES.length) {
+        // Заменяем статичный образец сгенерированными ячейками
+        promptImgGrid.innerHTML = PROMPT_IMAGES.map(item => {
+            const inner = item.src
+                ? `<img src="${item.src}" alt="${item.alt || ''}">`
+                : `<span class="prompt-img-placeholder">
+                       <svg class="prompt-img-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-image"/></svg>
+                       <span class="prompt-img-label">изображение</span>
+                   </span>`;
+            return `<figure class="prompt-img-cell"><div class="prompt-img-frame">${inner}</div></figure>`;
+        }).join('');
+    }
+
     console.log('%cNesquik Duo ♡', 'color: #b892ff; font-size: 18px; font-weight: bold;');
     console.log('%cПресет загружен с любовью ✦', 'color: #ff9ec8; font-size: 12px;');
 })();
