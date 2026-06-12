@@ -33,11 +33,12 @@
     /* Градиенты */
     --grad-main:    linear-gradient(135deg, #ffbcd9 0%, #cfb4ff 50%, #add0ff 100%);
     --grad-soft:    linear-gradient(135deg, #fff0f7 0%, #f5efff 50%, #eaf4ff 100%);
-    /* Задача 2: затемнённые градиенты для кнопок с белым текстом (WCAG AA ≥4.5:1) */
-    --grad-btn:        linear-gradient(135deg, #bf3d85 0%, #7d49d6 50%, #3f6dc7 100%);
-    --grad-btn-hover:  linear-gradient(135deg, #a83373 0%, #6b3bc2 50%, #345cb0 100%);
-    --grad-btn-fresh:       linear-gradient(135deg, #bf3d85, #7d49d6, #3f6dc7, #bf3d85);
-    --grad-btn-fresh-hover: linear-gradient(135deg, #a83373, #6b3bc2, #345cb0, #a83373);
+    /* Кнопки — СВЕТЛАЯ тема: светлые пастельные градиенты + тёмный текст (WCAG AA ≥4.5:1) */
+    --grad-btn:             linear-gradient(135deg, #ffbcd9 0%, #cfb4ff 50%, #add0ff 100%);
+    --grad-btn-hover:       linear-gradient(135deg, #ffa8cd 0%, #c0a0ff 50%, #97c2ff 100%);
+    --grad-btn-fresh:       linear-gradient(135deg, #ffb4dc, #d4a8ff, #b8d4ff, #ffb4dc);
+    --grad-btn-fresh-hover: linear-gradient(135deg, #ffa0d2, #c89aff, #a6c8ff, #ffa0d2);
+    --btn-text:             #3a2456; /* тёмно-фиолетовый текст на светлых кнопках */
     --grad-pink:    linear-gradient(135deg, #ffbcd9, #ff9ec8);
     --grad-violet:  linear-gradient(135deg, #cfb4ff, #b892ff);
     --grad-blue:    linear-gradient(135deg, #add0ff, #8bbaff);
@@ -96,6 +97,13 @@
     --ink:       #ece6f8;
     --ink-soft:  #b9aed2;
     --ink-muted: #877c9f;
+
+    /* Кнопки — ТЁМНАЯ тема: насыщенные тёмные градиенты + белый текст (WCAG AA ≥4.5:1) */
+    --grad-btn:             linear-gradient(135deg, #bf3d85 0%, #7d49d6 50%, #3f6dc7 100%);
+    --grad-btn-hover:       linear-gradient(135deg, #a83373 0%, #6b3bc2 50%, #345cb0 100%);
+    --grad-btn-fresh:       linear-gradient(135deg, #bf3d85, #7d49d6, #3f6dc7, #bf3d85);
+    --grad-btn-fresh-hover: linear-gradient(135deg, #a83373, #6b3bc2, #345cb0, #a83373);
+    --btn-text:             #ffffff; /* белый текст на тёмных кнопках */
 
     --grad-soft: linear-gradient(135deg, #322a4a 0%, #2d2745 50%, #283048 100%);
 
@@ -687,10 +695,11 @@ code, pre {
 }
 
 .btn-primary {
-    /* Задача 2: затемнённый градиент — белый текст даёт контраст ≥4.5:1 (WCAG AA) */
+    /* Цвет кнопки и текста зависят от темы (см. --grad-btn / --btn-text):
+       светлая → пастельная кнопка + тёмный текст; тёмная → тёмная кнопка + белый текст */
     background: var(--grad-btn);
     background-size: 200% auto;
-    color: #fff;
+    color: var(--btn-text);
     box-shadow: var(--shadow-md);
 }
 
@@ -718,10 +727,10 @@ code, pre {
 
 /* Fresh-кнопка — мерцающий пастельный градиент в стиле fresh-карточки */
 .btn-fresh {
-    /* Задача 2: затемнённый градиент под белый текст (WCAG AA) */
+    /* Цвет кнопки и текста зависят от темы (см. --grad-btn-fresh / --btn-text) */
     background: var(--grad-btn-fresh);
     background-size: 250% 250%;
-    color: #fff;
+    color: var(--btn-text);
     box-shadow: var(--shadow-md);
     animation: btn-fresh-shift 5s ease-in-out infinite;
     position: relative;
