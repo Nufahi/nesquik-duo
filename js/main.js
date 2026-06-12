@@ -94,12 +94,22 @@
             }
 
             btn.classList.add('copied');
-            btn.textContent = '✓ готово';
+            const labelEl = btn.querySelector('.copy-btn-label');
+            const prevLabel = labelEl ? labelEl.textContent : btn.textContent;
+            if (labelEl) {
+                labelEl.textContent = '✓ готово';
+            } else {
+                btn.textContent = '✓ готово';
+            }
             showToast('Скопировано в буфер обмена ♡');
 
             setTimeout(() => {
                 btn.classList.remove('copied');
-                btn.textContent = 'копировать';
+                if (labelEl) {
+                    labelEl.textContent = prevLabel;
+                } else {
+                    btn.textContent = prevLabel;
+                }
             }, 1800);
         });
     });

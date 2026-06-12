@@ -58,6 +58,7 @@
     --border-soft:      rgba(255, 255, 255, 0.8);
     --chip-bg:          rgba(255, 255, 255, 0.7);
     --code-bg:          linear-gradient(135deg, #fff7fc 0%, #f8f2ff 50%, #f1f6ff 100%);
+    --code-bg-end:      #f1f6ff;
     --grad-featured:    linear-gradient(135deg, rgba(255, 217, 234, 0.55), rgba(228, 212, 255, 0.55), rgba(255, 240, 247, 0.55));
     --grad-fresh-card:  linear-gradient(135deg, rgba(255, 220, 240, 0.55), rgba(228, 215, 255, 0.55), rgba(214, 232, 255, 0.55));
     --grad-panel:       linear-gradient(135deg, rgba(228, 212, 255, 0.45), rgba(207, 228, 255, 0.45));
@@ -120,6 +121,7 @@
     --border-soft:      rgba(255, 255, 255, 0.09);
     --chip-bg:          rgba(58, 50, 84, 0.7);
     --code-bg:          linear-gradient(135deg, #2b2440 0%, #292343 50%, #242a44 100%);
+    --code-bg-end:      #242a44;
     --grad-featured:    linear-gradient(135deg, rgba(120, 62, 96, 0.35), rgba(88, 64, 130, 0.35), rgba(70, 80, 128, 0.3));
     --grad-fresh-card:  linear-gradient(135deg, rgba(122, 64, 100, 0.35), rgba(90, 66, 134, 0.35), rgba(62, 84, 130, 0.35));
     --grad-panel:       linear-gradient(135deg, rgba(88, 64, 130, 0.35), rgba(62, 84, 130, 0.35));
@@ -1124,6 +1126,37 @@ code, pre {
     background: var(--grad-blue);
     color: white;
     border-color: transparent;
+}
+
+/* Широкая кнопка копирования под обрезанным промптом */
+.copy-btn-full {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    margin-top: 14px;
+    padding: 11px 16px;
+    border-radius: var(--r-md);
+    font-size: 0.85rem;
+    background: var(--grad-violet);
+    color: #fff;
+    border: 1px solid transparent;
+}
+
+.copy-btn-full .i-inline {
+    width: 16px;
+    height: 16px;
+}
+
+.copy-btn-full:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm), var(--glow-violet);
+    color: #fff;
+}
+
+.copy-btn-full.copied {
+    background: var(--grad-blue);
 }
 
 .code-desc {
@@ -2308,6 +2341,21 @@ code, pre {
 .prompt-card .code-block {
     margin-bottom: 0;
     white-space: normal;
+    position: relative;
+    max-height: 9.5em;
+    overflow: hidden;
+}
+
+/* Затемнение внизу обрезанного промпта — намёк, что текст длиннее */
+.prompt-card .code-block::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 3.2em;
+    pointer-events: none;
+    background: linear-gradient(to bottom, transparent, var(--code-bg-end, var(--surface)));
 }
 
 .prompt-card .code-block code {

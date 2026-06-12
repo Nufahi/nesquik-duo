@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Comfortaa:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css?v=2">
+    <link rel="stylesheet" href="css/style.css?v=3">
     <!-- Задача 3: маскот первого экрана грузим максимально рано -->
     <link rel="preload" as="image" href="assets/images/preview-main.png" fetchpriority="high">
 
@@ -453,7 +453,6 @@
                 </div>
                 <header class="prompt-card-header">
                     <h4>Картинки шорт</h4>
-                    <button class="copy-btn" type="button" data-copy="prompt-img-scene">копировать</button>
                 </header>
                 <p class="prompt-desc">Просит модель в каждом ответе вставлять одну визуальную сцену через data-iig-instruction. Плотный английский промпт под Nano Banana Pro 2.</p>
                 <pre class="code-block"><code id="prompt-img-scene">HTML&amp;CSS BLOCKS: VISUAL ARTIFACT EVERY RESPONSE
@@ -507,6 +506,10 @@ TEMPLATE
 &lt;img data-iig-instruction='{"style":"semi_realistic","prompt":"[PROMPT AS ONE PARAGRAPH]","aspect_ratio":"16:9","image_size":"2K"}' src="[IMG:GEN]"&gt;
 
 [Roleplay continues]</code></pre>
+                <button class="copy-btn copy-btn-full" type="button" data-copy="prompt-img-scene">
+                    <svg class="i-inline" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-copy"/></svg>
+                    <span class="copy-btn-label">копировать весь промпт</span>
+                </button>
             </article>
 
             <article class="prompt-card">
@@ -515,7 +518,6 @@ TEMPLATE
                 </div>
                 <header class="prompt-card-header">
                     <h4>Картинки биг</h4>
-                    <button class="copy-btn" type="button" data-copy="prompt-img-portrait">копировать</button>
                 </header>
                 <p class="prompt-desc">Развёрнутый промпт под Nano Banana Pro (Gemini 3 Pro Image): одна картинка на сообщение с детальной работой над камерой, светом и персонажами.</p>
                 <pre class="code-block"><code id="prompt-img-portrait">HTML&amp;CSS BLOCKS — VISUAL ARTIFACT EVERY RESPONSE
@@ -658,6 +660,10 @@ TEMPLATE
 &lt;img data-iig-instruction='{"style":"semi_realistic","prompt":"[FULL PROMPT: SECTIONS 1-8 AS ONE PARAGRAPH]","aspect_ratio":"16:9","image_size":"2K"}' src="[IMG:GEN]"&gt;
 
 [Roleplay continues]</code></pre>
+                <button class="copy-btn copy-btn-full" type="button" data-copy="prompt-img-portrait">
+                    <svg class="i-inline" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-copy"/></svg>
+                    <span class="copy-btn-label">копировать весь промпт</span>
+                </button>
                 <a href="https://t.me/aceeenvw" class="prompt-link" target="_blank" rel="noopener">https://t.me/aceeenvw</a>
             </article>
 
@@ -667,7 +673,6 @@ TEMPLATE
                 </div>
                 <header class="prompt-card-header">
                     <h4>Комикс</h4>
-                    <button class="copy-btn" type="button" data-copy="prompt-img-snapshot">копировать</button>
                 </header>
                 <p class="prompt-desc">В каждое сообщение добавляет вертикальную манхва-страницу из 3-4 панелей-сториборда: текущий момент сцены как мини-история.</p>
                 <pre class="code-block"><code id="prompt-img-snapshot">In every message add one vertical manhwa page showing the current moment of the scene.
@@ -700,6 +705,10 @@ Rules:
 - BUILD LOCK: men lean-muscled or tall built; user big chest.
 - CLOTHING LOCK: keep current outfit, fabric, damage, dampness, looseness, stains, carried objects from recent context.
 - Match the rendering technique, line quality, texture, and ornamental details from reference image. Do not copy specific compositions.</code></pre>
+                <button class="copy-btn copy-btn-full" type="button" data-copy="prompt-img-snapshot">
+                    <svg class="i-inline" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-copy"/></svg>
+                    <span class="copy-btn-label">копировать весь промпт</span>
+                </button>
             </article>
 
             <article class="prompt-card">
@@ -708,7 +717,6 @@ Rules:
                 </div>
                 <header class="prompt-card-header">
                     <h4>Градик подряд</h4>
-                    <button class="copy-btn" type="button" data-copy="prompt-img-style">копировать</button>
                 </header>
                 <p class="prompt-desc">Безрамочная манхва-страница: сцены перетекают друг в друга мягкими градиентами без панельных рамок. 3 сцены-мини-истории на страницу.</p>
                 <pre class="code-block"><code id="prompt-img-style">In every message add one vertical manhwa page showing the current moment of the scene.
@@ -738,6 +746,10 @@ Rules:
 - BUILD LOCK: men lean-muscled or tall built; user big chest.
 - CLOTHING LOCK: keep current outfit, fabric, damage, dampness, looseness, stains, carried objects from context.
 - NEGATIVE: overcrowded page, too many scenes, sparkles, glitter, ornaments, vignette, rectangular panel frames, outlined panels, visible panel borders, boxed panels, hard dividing lines, readable text, object-only scene, hand-only scene, still life scene, empty room scene, pose sheet, bad anatomy, extra fingers, fused fingers, twisted limbs, duplicated body, floating hand, crossed eyes, looking at viewer, looking at camera, watermark, kanji, hangul, cyrillic, latin text.</code></pre>
+                <button class="copy-btn copy-btn-full" type="button" data-copy="prompt-img-style">
+                    <svg class="i-inline" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-copy"/></svg>
+                    <span class="copy-btn-label">копировать весь промпт</span>
+                </button>
             </article>
 
             <article class="prompt-card">
@@ -746,7 +758,6 @@ Rules:
                 </div>
                 <header class="prompt-card-header">
                     <h4>Градик</h4>
-                    <button class="copy-btn" type="button" data-copy="prompt-img-gradik">копировать</button>
                 </header>
                 <p class="prompt-desc">Безрамочная манхва-страница с динамичной асимметричной раскладкой: сцены сливаются через градиенты, фигуры остаются целыми. 3 сцены, разный лейаут каждый раз.</p>
                 <pre class="code-block"><code id="prompt-img-gradik">In every message add one vertical manhwa page showing the current moment of the scene.
@@ -777,6 +788,10 @@ Rules:
 - HAIR COLOR BAN: never state hair color for {{char}} or {{user}}. Eren has white curly hair, blue eyes.
 - HAIR ALLOWED: mention hair only if scene-changed: wet, tied back, loose, messy, windblown.
 - CLOTHING LOCK: keep current outfit, fabric, damage, dampness, carried objects from context.</code></pre>
+                <button class="copy-btn copy-btn-full" type="button" data-copy="prompt-img-gradik">
+                    <svg class="i-inline" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-copy"/></svg>
+                    <span class="copy-btn-label">копировать весь промпт</span>
+                </button>
             </article>
 
         </div>
@@ -959,6 +974,6 @@ Rules:
         <span class="toast-text">Скопировано!</span>
     </div>
 
-    <script src="js/main.js"></script>
+    <script src="js/main.js?v=2">
 </body>
 </html>
