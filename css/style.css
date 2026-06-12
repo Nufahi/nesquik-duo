@@ -379,7 +379,11 @@ code, pre {
     display: none;
     flex-direction: column;
     gap: 5px;
-    padding: 6px;
+    padding: 8px;
+    position: relative;
+    z-index: 2;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 .burger span {
@@ -572,14 +576,17 @@ code, pre {
     align-items: center;
     justify-content: center;
     animation: card-float 6s ease-in-out infinite;
+    /* Стабилизируем анимацию: отдельный слой на GPU, без дрожания субпикселей */
+    transform: translateZ(0);
+    backface-visibility: hidden;
     /* Задача 1: запас места под drop-shadow, чтобы тень не обрезалась краем */
     overflow: visible;
     padding-bottom: 48px;
 }
 
 @keyframes card-float {
-    0%, 100% { transform: translateY(0); }
-    50%      { transform: translateY(-14px); }
+    0%, 100% { transform: translate3d(0, 0, 0); }
+    50%      { transform: translate3d(0, -14px, 0); }
 }
 
 /* Розово-фиолетовое пастельное свечение позади картинки */
@@ -626,7 +633,6 @@ code, pre {
     opacity: 0;
     transform: scale(0.985);
     transition: opacity 1.2s ease, transform 1.2s ease;
-    will-change: opacity, transform;
 }
 
 .hero-slide.is-active {
@@ -1104,6 +1110,8 @@ code, pre {
 }
 
 .copy-btn {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
     padding: 6px 14px;
     background: rgba(184, 146, 255, 0.15);
     border: 1px solid rgba(184, 146, 255, 0.3);
@@ -1147,6 +1155,12 @@ code, pre {
 .copy-btn-full .i-inline {
     width: 16px;
     height: 16px;
+}
+
+/* Иконка и подпись не перехватывают тап — клик уходит на кнопку */
+.copy-btn svg,
+.copy-btn .copy-btn-label {
+    pointer-events: none;
 }
 
 .copy-btn-full:hover {
@@ -1622,6 +1636,16 @@ code, pre {
     .version-card::before { left: -32px; width: 14px; height: 14px; }
 
     .install-guide { padding: 28px 24px; }
+
+    /* На телефонах float картинки только трясётся (особенно в режиме
+       энергосбережения), толку от него нет — оставляем картинку статичной. */
+    .hero-image-wrap {
+        animation: none;
+        transform: none;
+    }
+    .hero-image-glow {
+        animation: none;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2174,6 +2198,16 @@ code, pre {
     display: flex;
     align-items: center;
     gap: 8px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Иконки внутри кнопок навбара не должны перехватывать тап —
+   клик/тап всегда уходит на саму кнопку. */
+.theme-toggle svg,
+.theme-toggle .theme-icon,
+.burger span {
+    pointer-events: none;
 }
 
 .theme-toggle {
@@ -2189,6 +2223,9 @@ code, pre {
     transition: all var(--t-fast);
     position: relative;
     overflow: hidden;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    flex-shrink: 0;
 }
 
 .theme-toggle:hover {

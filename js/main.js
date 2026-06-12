@@ -81,16 +81,44 @@
 
             const text = codeEl.textContent;
 
-            try {
-                await navigator.clipboard.writeText(text);
-            } catch {
-                // Фолбэк для старых браузеров
+            const fallbackCopy = (str) => {
                 const ta = document.createElement('textarea');
-                ta.value = text;
+                ta.value = str;
+                // Прячем от глаз, но оставляем доступным для выделения
+                ta.setAttribute('readonly', '');
+                ta.style.position = 'fixed';
+                ta.style.top = '0';
+                ta.style.left = '0';
+                ta.style.width = '1px';
+                ta.style.height = '1px';
+                ta.style.padding = '0';
+                ta.style.opacity = '0';
                 document.body.appendChild(ta);
+                ta.focus();
                 ta.select();
-                document.execCommand('copy');
+                ta.setSelectionRange(0, str.length); // iOS Safari
+                let ok = false;
+                try { ok = document.execCommand('copy'); } catch { ok = false; }
                 ta.remove();
+                return ok;
+            };
+
+            let copied = false;
+            // navigator.clipboard доступен только в защищённом контексте (https/localhost)
+            if (navigator.clipboard && window.isSecureContext) {
+                try {
+                    await navigator.clipboard.writeText(text);
+                    copied = true;
+                } catch {
+                    copied = fallbackCopy(text);
+                }
+            } else {
+                copied = fallbackCopy(text);
+            }
+
+            if (!copied) {
+                showToast('Не удалось скопировать — выдели текст вручную');
+                return;
             }
 
             btn.classList.add('copied');
