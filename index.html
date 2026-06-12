@@ -155,13 +155,12 @@
                 Пресет для Claude Opus и других моделей Claude.
             </p>
             <div class="hero-buttons">
-                <a href="#version-cards" class="btn btn-primary">
-                    <span>Скачать пресет</span>
-                    <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-down"/></svg>
-                </a>
-                <a href="#version-fresh" class="btn btn-fresh">
+                <a href="#version-fresh" class="btn btn-primary">
                     <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-heart"/></svg>
-                    <span>Последняя версия</span>
+                    <span>Скачать последнюю версию</span>
+                </a>
+                <a href="#versions" class="btn btn-secondary">
+                    <span>Все версии</span>
                 </a>
                 <a href="#regex" class="btn btn-secondary">
                     <span>Регексы</span>
@@ -169,7 +168,7 @@
             </div>
             <div class="hero-stats">
                 <div class="stat">
-                    <span class="stat-value">v2</span>
+                    <span class="stat-value">v2.5</span>
                     <span class="stat-label">актуальная версия</span>
                 </div>
                 <div class="stat">
@@ -212,45 +211,27 @@
 
         <div id="version-cards" class="version-cards">
 
-            <!-- Карточка Opus (v1 и v2, обе на 4.6) -->
-            <article class="version-card-new featured">
-                <div class="version-badge">
-                    <svg class="i-inline" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-sparkle"/></svg>
-                    Claude Opus
+            <!-- Карточка свежего релиза 2.5 — самая новая, идёт первой -->
+            <article id="version-fresh" class="version-card-new version-card-fresh card-center">
+                <div class="version-badge badge-fresh">
+                    <svg class="i-inline" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-heart"/></svg>
+                    fresh
                 </div>
-                <h3>Nesquik Duo · Opus</h3>
-                <p class="version-desc">Пресет для Claude Opus 4.6</p>
+                <h3>Nesquik Duo 2.5</h3>
+                <p class="version-desc">Самый свежий релиз пресета под Opus.</p>
 
                 <div class="version-variants">
-                    <!-- v2 -->
                     <div class="variant">
                         <div class="variant-head">
                             <span class="variant-tag tag-latest">latest</span>
-                            <span class="variant-title">v2 · Opus 4.6</span>
+                            <span class="variant-title">v2.5 · Opus</span>
                         </div>
                         <div class="variant-actions">
-                            <a href="assets/downloads/Несквик дуо v.2.json" class="btn btn-small btn-primary" download>
+                            <a href="assets/downloads/Несквик дуо v2.5.json" class="btn btn-small btn-primary" download>
                                 <span>Скачать</span>
                                 <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-down"/></svg>
                             </a>
-                            <a href="https://teletype.in/@babachikulya/DQZnK5zWqURgdx" class="btn btn-small btn-ghost" target="_blank" rel="noopener">
-                                <span>Гайд</span>
-                                <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-external"/></svg>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- v1 -->
-                    <div class="variant">
-                        <div class="variant-head">
-                            <span class="variant-title">v1 · Opus 4.6</span>
-                        </div>
-                        <div class="variant-actions">
-                            <a href="assets/downloads/Несквик дуо.json" class="btn btn-small btn-primary" download>
-                                <span>Скачать</span>
-                                <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-down"/></svg>
-                            </a>
-                            <a href="https://teletype.in/@babachikulya/DQZnK5zWqURgdx" class="btn btn-small btn-ghost" target="_blank" rel="noopener">
+                            <a href="https://teletype.in/@babachikulya/iZGqDjpmvc5213" class="btn btn-small btn-ghost" target="_blank" rel="noopener">
                                 <span>Гайд</span>
                                 <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-external"/></svg>
                             </a>
@@ -288,27 +269,44 @@
                 </div>
             </article>
 
-            <!-- Карточка свежего релиза (соло, по центру снизу) -->
-            <article id="version-fresh" class="version-card-new version-card-fresh card-center">
-                <div class="version-badge badge-fresh">
-                    <svg class="i-inline" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-heart"/></svg>
-                    fresh
+            <!-- Карточка Opus (старые версии v2 и v1, на 4.6) -->
+            <article class="version-card-new">
+                <div class="version-badge">
+                    <svg class="i-inline" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-sparkle"/></svg>
+                    Claude Opus
                 </div>
-                <h3>Nesquik Duo 2.5</h3>
-                <p class="version-desc">Самый свежий релиз пресета под Opus.</p>
+                <h3>Nesquik Duo · Opus</h3>
+                <p class="version-desc">Прошлые версии пресета для Claude Opus 4.6</p>
 
                 <div class="version-variants">
+                    <!-- v2 -->
                     <div class="variant">
                         <div class="variant-head">
-                            <span class="variant-tag tag-latest">latest</span>
-                            <span class="variant-title">v2.5</span>
+                            <span class="variant-title">v2 · Opus 4.6</span>
                         </div>
                         <div class="variant-actions">
-                            <a href="assets/downloads/Несквик дуо v2.5.json" class="btn btn-small btn-primary" download>
+                            <a href="assets/downloads/Несквик дуо v.2.json" class="btn btn-small btn-primary" download>
                                 <span>Скачать</span>
                                 <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-down"/></svg>
                             </a>
-                            <a href="https://teletype.in/@babachikulya/iZGqDjpmvc5213" class="btn btn-small btn-ghost" target="_blank" rel="noopener">
+                            <a href="https://teletype.in/@babachikulya/DQZnK5zWqURgdx" class="btn btn-small btn-ghost" target="_blank" rel="noopener">
+                                <span>Гайд</span>
+                                <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-external"/></svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- v1 -->
+                    <div class="variant">
+                        <div class="variant-head">
+                            <span class="variant-title">v1 · Opus 4.6</span>
+                        </div>
+                        <div class="variant-actions">
+                            <a href="assets/downloads/Несквик дуо.json" class="btn btn-small btn-primary" download>
+                                <span>Скачать</span>
+                                <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-down"/></svg>
+                            </a>
+                            <a href="https://teletype.in/@babachikulya/DQZnK5zWqURgdx" class="btn btn-small btn-ghost" target="_blank" rel="noopener">
                                 <span>Гайд</span>
                                 <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-external"/></svg>
                             </a>

@@ -1668,7 +1668,7 @@ code, pre {
     margin: 0 auto;
 }
 
-/* Третья карточка ('свежая') — соло, по центру снизу */
+/* Свежая карточка — соло, по центру сверху (новое впереди) */
 .version-card-new.card-center {
     grid-column: 1 / -1;
     max-width: 540px;
@@ -1753,6 +1753,7 @@ code, pre {
 .version-card-fresh {
     background: var(--grad-fresh-card);
     border: 2px dashed rgba(184, 146, 255, 0.4);
+    box-shadow: var(--shadow-lg), var(--glow-violet);
     position: relative;
 }
 
