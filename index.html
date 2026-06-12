@@ -281,33 +281,40 @@
                                 <span>Скачать</span>
                                 <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-down"/></svg>
                             </a>
-                            <a href="#" class="btn btn-small btn-ghost is-disabled" aria-disabled="true">
-                                <span>Гайд скоро</span>
+                            <a href="https://teletype.in/@babachikulya/DQZnK5zWqURgdx" class="btn btn-small btn-ghost" target="_blank" rel="noopener">
+                                <span>Гайд</span>
+                                <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-external"/></svg>
                             </a>
                         </div>
                     </div>
                 </div>
             </article>
 
-            <!-- Карточка свежей версии (соло, по центру снизу) -->
+            <!-- Карточка свежего релиза (соло, по центру снизу) -->
             <article id="version-fresh" class="version-card-new version-card-fresh card-center">
                 <div class="version-badge badge-fresh">
                     <svg class="i-inline" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-heart"/></svg>
                     fresh
                 </div>
-                <h3>Nesquik Duo · Свежая версия</h3>
-                <p class="version-desc">Самый свежий вариант пресета — может быть настроен и под Opus, и под Sonnet. Скоро будет доступен.</p>
+                <h3>Nesquik Duo 2.5</h3>
+                <p class="version-desc">Самый свежий релиз пресета — может быть настроен и под Opus, и под Sonnet.</p>
 
                 <div class="version-variants">
                     <div class="variant">
                         <div class="variant-head">
-                            <span class="variant-tag tag-soon">скоро</span>
-                            <span class="variant-title">в разработке</span>
+                            <span class="variant-tag tag-latest">latest</span>
+                            <span class="variant-title">v2.5</span>
                         </div>
                         <div class="variant-actions">
-                            <a href="#" class="btn btn-small btn-primary is-disabled" aria-disabled="true">
-                                <span>Скоро</span>
-                                <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-sparkle"/></svg>
+                            <!-- TODO: положи файл по этому пути в assets/downloads/ и кнопка заработает -->
+                            <a href="assets/downloads/Несквик дуо v.2.5.json" class="btn btn-small btn-primary" download>
+                                <span>Скачать</span>
+                                <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-down"/></svg>
+                            </a>
+                            <!-- TODO: замени # на ссылку своего гайда для 2.5 -->
+                            <a href="#" class="btn btn-small btn-ghost" target="_blank" rel="noopener">
+                                <span>Гайд</span>
+                                <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-external"/></svg>
                             </a>
                         </div>
                     </div>
@@ -441,9 +448,25 @@
             Картинки
         </h3>
 
+        <!-- ====================================================================
+             ПРЕВЬЮ КАРТИНОК В КАРТОЧКАХ ПРОМПТОВ
+             КУДА КЛАСТЬ ФАЙЛЫ: assets/images/prompts/
+             КАК ЗАМЕНИТЬ ЗАГЛУШКУ НА СВОЮ КАРТИНКУ-ПРИМЕР:
+               1) положи файл в assets/images/prompts/ (например scene.png);
+               2) раскомментируй <img> внутри .prompt-preview нужной карточки
+                  и впиши путь в src + подпись в alt.
+             Пока src не указан — показывается пастельная заглушка.
+        ===================================================================== -->
         <div class="prompt-grid">
 
             <article class="prompt-card">
+                <div class="prompt-preview">
+                    <!-- <img src="assets/images/prompts/scene.png" alt="Пример: генерация в сцене"> -->
+                    <span class="prompt-preview-ph">
+                        <svg class="prompt-preview-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-image"/></svg>
+                        <span class="prompt-preview-label">пример</span>
+                    </span>
+                </div>
                 <header class="prompt-card-header">
                     <h4>Генерация в сцене</h4>
                     <button class="copy-btn" type="button" data-copy="prompt-img-scene">копировать</button>
@@ -453,6 +476,13 @@
             </article>
 
             <article class="prompt-card">
+                <div class="prompt-preview">
+                    <!-- <img src="assets/images/prompts/portrait.png" alt="Пример: портрет персонажа"> -->
+                    <span class="prompt-preview-ph">
+                        <svg class="prompt-preview-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-image"/></svg>
+                        <span class="prompt-preview-label">пример</span>
+                    </span>
+                </div>
                 <header class="prompt-card-header">
                     <h4>Портрет персонажа</h4>
                     <button class="copy-btn" type="button" data-copy="prompt-img-portrait">копировать</button>
@@ -462,6 +492,13 @@
             </article>
 
             <article class="prompt-card">
+                <div class="prompt-preview">
+                    <!-- <img src="assets/images/prompts/snapshot.png" alt="Пример: кадр из текущего момента"> -->
+                    <span class="prompt-preview-ph">
+                        <svg class="prompt-preview-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-image"/></svg>
+                        <span class="prompt-preview-label">пример</span>
+                    </span>
+                </div>
                 <header class="prompt-card-header">
                     <h4>Кадр из текущего момента</h4>
                     <button class="copy-btn" type="button" data-copy="prompt-img-snapshot">копировать</button>
@@ -471,6 +508,13 @@
             </article>
 
             <article class="prompt-card">
+                <div class="prompt-preview">
+                    <!-- <img src="assets/images/prompts/style.png" alt="Пример: пастельный стиль Nesquik"> -->
+                    <span class="prompt-preview-ph">
+                        <svg class="prompt-preview-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-image"/></svg>
+                        <span class="prompt-preview-label">пример</span>
+                    </span>
+                </div>
                 <header class="prompt-card-header">
                     <h4>Пастельный стиль Nesquik</h4>
                     <button class="copy-btn" type="button" data-copy="prompt-img-style">копировать</button>
@@ -478,41 +522,6 @@
                 <p class="prompt-desc">Стилевой «хвостик» для генераторов картинок — добавляй в конец любого промпта, чтобы картинки получались в мягкой пастельной эстетике пресета.</p>
                 <pre class="code-block"><code id="prompt-img-style">soft pastel palette, pink and lavender tones, dreamy diffused lighting, gentle film grain, cozy atmosphere, high detail, delicate linework</code></pre>
             </article>
-
-        </div>
-
-        <!-- ====================================================================
-             Задача 5: Заглушки под будущие картинки-примеры промптов.
-             КУДА КЛАСТЬ ФАЙЛЫ: assets/images/prompts/
-             КАК ЗАМЕНИТЬ ЗАГЛУШКУ НА СВОЮ КАРТИНКУ:
-               1) положи файл в assets/images/prompts/ (например example-1.png);
-               2) либо впиши путь в массив PROMPT_IMAGES в js/main.js
-                  (поле src) — заглушка сама станет картинкой;
-               3) либо просто раскомментируй <img> внутри нужной ячейки ниже
-                  и впиши src/alt вручную.
-             Количество заглушек расширяется: добавляй элементы в массив
-             PROMPT_IMAGES (js/main.js) ИЛИ копируй блок .prompt-img-cell ниже.
-        ===================================================================== -->
-        <h3 class="subsection-title">
-            <svg class="i-inline" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-image"/></svg>
-            Примеры результатов
-        </h3>
-
-        <!-- Сетка генерируется из массива PROMPT_IMAGES в js/main.js.
-             Если JS отключён — показываются статичные заглушки ниже. -->
-        <div class="prompt-img-grid" id="prompt-img-grid">
-
-            <!-- Статичный плейсхолдер-образец (можно копировать сколько нужно).
-                 Чтобы вставить свою картинку — раскомментируй <img> и впиши путь: -->
-            <figure class="prompt-img-cell">
-                <div class="prompt-img-frame">
-                    <!-- <img src="assets/images/prompts/example-1.png" alt="Пример результата"> -->
-                    <span class="prompt-img-placeholder">
-                        <svg class="prompt-img-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-image"/></svg>
-                        <span class="prompt-img-label">изображение</span>
-                    </span>
-                </div>
-            </figure>
 
         </div>
     </section>
@@ -628,28 +637,28 @@
                         просто скопируй блок .credit и поменяй текст.
                     -->
                     <div class="credit">
-                        <span class="credit-name">Аня</span>
-                        <span class="credit-note">за терпение и магию</span>
+                        <span class="credit-name">асеенв</span>
+                        <span class="credit-note">за вдохновение и магию</span>
                     </div>
                     <div class="credit">
-                        <span class="credit-name">Маша</span>
-                        <span class="credit-note">за идеи в 3 ночи</span>
+                        <span class="credit-name">агат</span>
+                        <span class="credit-note">за поддержку и идеи</span>
                     </div>
                     <div class="credit">
-                        <span class="credit-name">Кот</span>
-                        <span class="credit-note">за моральную поддержку</span>
+                        <span class="credit-name">Лариса</span>
+                        <span class="credit-note">за тепло и заботу</span>
                     </div>
                     <div class="credit">
-                        <span class="credit-name">Тестеры пресета</span>
-                        <span class="credit-note">за смелость и баг-репорты</span>
+                        <span class="credit-name">Сонечка</span>
+                        <span class="credit-note">за веру в пресет</span>
                     </div>
                     <div class="credit">
-                        <span class="credit-name">Комьюнити SillyTavern</span>
-                        <span class="credit-note">за вдохновение каждый день</span>
+                        <span class="credit-name">чатик SillyTavern</span>
+                        <span class="credit-note">за уют и живое комьюнити</span>
                     </div>
                     <div class="credit">
-                        <span class="credit-name">Ты</span>
-                        <span class="credit-note">за то, что дочитал(а) до титров ♡</span>
+                        <span class="credit-name">все-все, кто использует пресет</span>
+                        <span class="credit-note">за то, что вы рядом ♡</span>
                     </div>
                     <p class="credits-heading credits-end">· конец ·</p>
                 </div>
