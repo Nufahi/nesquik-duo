@@ -30,6 +30,12 @@
     const navLinks = document.querySelector('.nav-links');
 
     if (burger && navLinks) {
+        const closeMenu = () => {
+            navLinks.classList.remove('open');
+            burger.classList.remove('open');
+            burger.setAttribute('aria-expanded', 'false');
+        };
+
         burger.addEventListener('click', () => {
             const isOpen = navLinks.classList.toggle('open');
             burger.classList.toggle('open', isOpen);
@@ -38,11 +44,18 @@
 
         // Закрываем при клике на пункт меню
         navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('open');
-                burger.classList.remove('open');
-                burger.setAttribute('aria-expanded', 'false');
-            });
+            link.addEventListener('click', closeMenu);
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && navLinks.classList.contains('open')) {
+                closeMenu();
+                burger.focus();
+            }
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!navLinks.contains(event.target) && !burger.contains(event.target)) closeMenu();
         });
     }
 
@@ -144,7 +157,7 @@
 
     /* ---------- Reveal-анимация при прокрутке ---------- */
     const revealTargets = document.querySelectorAll(
-        '.version-card-new, .code-card, .prompt-card, .script-card, .guide-step, .extension-card, .download-card, .install-guide, .info-panel, .section-header, .credits-screen, .regex-hint'
+        '.version-card-new, .code-card, .prompt-card, .style-card, .script-card, .guide-step, .extension-card, .download-card, .install-guide, .info-panel, .section-header, .credits-screen, .regex-hint'
     );
 
     revealTargets.forEach(el => el.classList.add('reveal'));
@@ -177,7 +190,9 @@
                     const id = entry.target.id;
                     navAnchors.forEach(a => {
                         const isActive = a.getAttribute('href') === `#${id}`;
-                        a.style.color = isActive ? 'var(--violet-400)' : '';
+                        a.classList.toggle('is-active', isActive);
+                        if (isActive) a.setAttribute('aria-current', 'true');
+                        else a.removeAttribute('aria-current');
                     });
                 }
             });
@@ -206,9 +221,15 @@
        в hero-секцию переключаемся на следующий слайд (даёт ощущение «обновления»). */
     const heroSlides = document.querySelectorAll('.hero-slide');
     if (heroSlides.length > 1) {
+        const heroDots = document.querySelectorAll('.hero-dots .carousel-dot');
         let activeIdx = 0;
         const setActive = (idx) => {
             heroSlides.forEach((s, i) => s.classList.toggle('is-active', i === idx));
+            heroDots.forEach((dot, i) => {
+                dot.classList.toggle('is-active', i === idx);
+                if (i === idx) dot.setAttribute('aria-current', 'true');
+                else dot.removeAttribute('aria-current');
+            });
             activeIdx = idx;
         };
         const nextSlide = () => setActive((activeIdx + 1) % heroSlides.length);
@@ -224,6 +245,14 @@
             clearInterval(intervalId);
             intervalId = null;
         };
+
+        heroDots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                setActive(index);
+                stopAuto();
+                startAuto();
+            });
+        });
 
         const heroSection = document.getElementById('hero');
         if (heroSection && 'IntersectionObserver' in window) {
@@ -256,6 +285,48 @@
             else if (heroSection && heroSection.getBoundingClientRect().bottom > 0) startAuto();
         });
     }
+
+    /* ---------- Карусели примеров стилей ---------- */
+    document.querySelectorAll('[data-carousel]').forEach(carousel => {
+        const slides = [...carousel.querySelectorAll('.style-slide')];
+        const dotsWrap = carousel.querySelector('.carousel-dots');
+        if (!slides.length || !dotsWrap) return;
+
+        let activeIdx = 0;
+        const dots = slides.map((_, index) => {
+            const dot = document.createElement('button');
+            dot.type = 'button';
+            dot.className = `carousel-dot${index === 0 ? ' is-active' : ''}`;
+            dot.setAttribute('aria-label', `Пример ${index + 1}`);
+            if (index === 0) dot.setAttribute('aria-current', 'true');
+            dotsWrap.appendChild(dot);
+            return dot;
+        });
+
+        const setActive = (index) => {
+            activeIdx = (index + slides.length) % slides.length;
+            slides.forEach((slide, i) => slide.classList.toggle('is-active', i === activeIdx));
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('is-active', i === activeIdx);
+                if (i === activeIdx) dot.setAttribute('aria-current', 'true');
+                else dot.removeAttribute('aria-current');
+            });
+        };
+
+        carousel.querySelector('.carousel-prev')?.addEventListener('click', () => setActive(activeIdx - 1));
+        carousel.querySelector('.carousel-next')?.addEventListener('click', () => setActive(activeIdx + 1));
+        dots.forEach((dot, index) => dot.addEventListener('click', () => setActive(index)));
+
+        let touchStart = 0;
+        const slidesWrap = carousel.querySelector('.style-slides');
+        slidesWrap.addEventListener('touchstart', event => {
+            touchStart = event.changedTouches[0].clientX;
+        }, { passive: true });
+        slidesWrap.addEventListener('touchend', event => {
+            const distance = event.changedTouches[0].clientX - touchStart;
+            if (Math.abs(distance) > 45) setActive(activeIdx + (distance < 0 ? 1 : -1));
+        }, { passive: true });
+    });
 
     /* ---------- Принудительное скачивание файлов (Blob) ----------
        Браузеры иногда игнорируют атрибут download для .json/.txt и просто

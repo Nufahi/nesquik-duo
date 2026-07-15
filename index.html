@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Nesquik Duo — для SillyTavern под Claude Opus и другие модели Claude. Версии пресета, регексы, промпты и расширения.">
+    <meta name="description" content="Nesquik Duo — для SillyTavern под Claude Opus и другие модели Claude. Версии пресета, регексы, промпты, стили и расширения.">
     <title>Nesquik Duo · Пресет для SillyTavern</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="apple-touch-icon" href="logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Comfortaa:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css?v=4">
+    <link rel="stylesheet" href="css/style.css?v=5">
     <!-- Задача 3: маскот первого экрана грузим максимально рано -->
-    <link rel="preload" as="image" href="assets/images/preview-main.png" fetchpriority="high">
+    <link rel="preload" as="image" href="новые картинки на главную стр/IMG_20260715_134318_808.png" fetchpriority="high">
 
     <!-- Применяем сохранённую тему до отрисовки страницы (без мигания) -->
     <script>
@@ -25,12 +27,14 @@
         })();
     </script>
 
+</head>
+<body>
     <!-- SVG-спрайт с иконками -->
     <svg width="0" height="0" style="position:absolute" aria-hidden="true">
         <defs>
             <!-- Сердечко -->
             <symbol id="i-heart" viewBox="0 0 24 24">
-                <path fill="currentColor" d="M12 21s-7.5-4.6-10-9.4C.6 8.8 2.2 5 5.6 5c2 0 3.4 1.1 4.4 2.5C11 6.1 12.4 5 14.4 5c3.4 0 5 3.8 3.6 6.6C19.5 16.4 12 21 12 21z"/>
+                <path fill="currentColor" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09A6.01 6.01 0 0116.5 3C19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
             </symbol>
             <!-- Звёздочка 4 луча (sparkle) -->
             <symbol id="i-sparkle" viewBox="0 0 24 24">
@@ -98,8 +102,6 @@
             </symbol>
         </defs>
     </svg>
-</head>
-<body>
 
     <!-- Декоративные размытые круги на фоне -->
     <div class="bg-blobs" aria-hidden="true">
@@ -124,10 +126,11 @@
             <svg class="logo-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-sparkle"/></svg>
             <span class="logo-text">Nesquik<span class="logo-duo">Duo</span></span>
         </a>
-        <nav class="nav-links">
+        <nav class="nav-links" id="site-navigation">
             <a href="#versions">Версии</a>
             <a href="#regex">Регексы</a>
             <a href="#prompts">Промпты</a>
+            <a href="#styles">Стили</a>
             <a href="#extensions">Расширения</a>
         </nav>
         <div class="nav-actions">
@@ -135,7 +138,7 @@
                 <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-sun"/></svg>
                 <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-moon"/></svg>
             </button>
-            <button class="burger" aria-label="Меню" aria-expanded="false">
+            <button class="burger" type="button" aria-label="Меню" aria-expanded="false" aria-controls="site-navigation">
                 <span></span><span></span><span></span>
             </button>
         </div>
@@ -156,7 +159,7 @@
             </p>
             <div class="hero-buttons">
                 <a href="#version-fresh" class="btn btn-primary">
-                    <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-heart"/></svg>
+                    <svg class="btn-icon heart-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-heart"/></svg>
                     <span>Скачать последнюю версию</span>
                 </a>
                 <a href="#versions" class="btn btn-secondary">
@@ -184,15 +187,20 @@
         <div class="hero-visual">
             <div class="hero-image-wrap">
                 <div class="hero-image-glow" aria-hidden="true"></div>
-                <!-- Слайды: меняются плавно через CSS-анимацию + JS на скролл -->
+                <!-- Слайды меняются автоматически, точки позволяют выбрать кадр вручную -->
                 <div class="hero-slides" data-active="0">
-                    <!-- Задача 3: маскот первого экрана грузим сразу, без lazy, с высоким приоритетом -->
-                    <img class="hero-image hero-slide is-active" src="assets/images/preview-main.png" alt="Превью пресета Nesquik Duo" loading="eager" fetchpriority="high" decoding="async" onerror="this.style.display='none'">
-                    <img class="hero-image hero-slide" src="assets/images/preview-main2.png" alt="Превью пресета Nesquik Duo · вариант 2" loading="eager" fetchpriority="high" decoding="async" onerror="this.style.display='none'">
+                    <img class="hero-image hero-slide is-active" src="новые картинки на главную стр/IMG_20260715_134318_808.png" alt="Иллюстрация Nesquik Duo, кадр 1" loading="eager" fetchpriority="high" decoding="async">
+                    <img class="hero-image hero-slide" src="новые картинки на главную стр/IMG_20260715_134318_919.png" alt="Иллюстрация Nesquik Duo, кадр 2" loading="lazy" decoding="async">
+                    <img class="hero-image hero-slide" src="новые картинки на главную стр/IMG_20260715_134319_587.png" alt="Иллюстрация Nesquik Duo, кадр 3" loading="lazy" decoding="async">
+                    <img class="hero-image hero-slide" src="новые картинки на главную стр/IMG_20260715_134322_164.png" alt="Иллюстрация Nesquik Duo, кадр 4" loading="lazy" decoding="async">
+                    <img class="hero-image hero-slide" src="новые картинки на главную стр/IMG_20260715_134323_902.png" alt="Иллюстрация Nesquik Duo, кадр 5" loading="lazy" decoding="async">
                 </div>
-                <div class="hero-image-fallback" aria-hidden="true">
-                    <svg class="placeholder-svg" viewBox="0 0 24 24"><use href="#i-palette"/></svg>
-                    <span class="placeholder-text">preview-main.png</span>
+                <div class="carousel-dots hero-dots" aria-label="Выбор иллюстрации">
+                    <button class="carousel-dot is-active" type="button" data-slide="0" aria-label="Кадр 1" aria-current="true"></button>
+                    <button class="carousel-dot" type="button" data-slide="1" aria-label="Кадр 2"></button>
+                    <button class="carousel-dot" type="button" data-slide="2" aria-label="Кадр 3"></button>
+                    <button class="carousel-dot" type="button" data-slide="3" aria-label="Кадр 4"></button>
+                    <button class="carousel-dot" type="button" data-slide="4" aria-label="Кадр 5"></button>
                 </div>
             </div>
         </div>
@@ -455,7 +463,6 @@
                 <header class="prompt-card-header">
                     <h4>Картинки шорт</h4>
                 </header>
-                <p class="prompt-desc">Просит модель в каждом ответе вставлять одну визуальную сцену через data-iig-instruction. Плотный английский промпт под Nano Banana Pro 2.</p>
                 <pre class="code-block"><code id="prompt-img-scene">HTML&amp;CSS BLOCKS: VISUAL ARTIFACT EVERY RESPONSE
 
 IMAGE COUNT: ≥1 visual per response. Render multiple when layers are independent (phone artifact + scene moment = two images, never collapse). One scene per image.
@@ -520,7 +527,6 @@ TEMPLATE
                 <header class="prompt-card-header">
                     <h4>Картинки биг</h4>
                 </header>
-                <p class="prompt-desc">Развёрнутый промпт под Nano Banana Pro (Gemini 3 Pro Image): одна картинка на сообщение с детальной работой над камерой, светом и персонажами.</p>
                 <pre class="code-block"><code id="prompt-img-portrait">HTML&amp;CSS BLOCKS — VISUAL ARTIFACT EVERY RESPONSE
 
 Sequence: narrative (2-3 sentences) → HTML block → narrative continues.
@@ -675,7 +681,6 @@ TEMPLATE
                 <header class="prompt-card-header">
                     <h4>Комикс</h4>
                 </header>
-                <p class="prompt-desc">В каждое сообщение добавляет вертикальную манхва-страницу из 3-4 панелей-сториборда: текущий момент сцены как мини-история.</p>
                 <pre class="code-block"><code id="prompt-img-snapshot">In every message add one vertical manhwa page showing the current moment of the scene.
 Place it in the middle of the message at the most relevant narrative beat.
 Use this exact HTML wrapper and keep all CSS exactly as written. Do not add corner divs, browser frames, phone frames, UI borders, captions, or extra decorative borders. Only replace src="[IMG:GEN]" with the generated image result.
@@ -719,7 +724,6 @@ Rules:
                 <header class="prompt-card-header">
                     <h4>Градик подряд</h4>
                 </header>
-                <p class="prompt-desc">Безрамочная манхва-страница: сцены перетекают друг в друга мягкими градиентами без панельных рамок. 3 сцены-мини-истории на страницу.</p>
                 <pre class="code-block"><code id="prompt-img-style">In every message add one vertical manhwa page showing the current moment of the scene.
 Place it in the middle of the message at the most relevant narrative beat.
 Use this exact HTML wrapper and keep all CSS exactly as written. Do not add corner divs, browser frames, phone frames, UI borders, captions, or extra decorative borders. Only replace src="[IMG:GEN]" with the generated image result.
@@ -760,7 +764,6 @@ Rules:
                 <header class="prompt-card-header">
                     <h4>Градик</h4>
                 </header>
-                <p class="prompt-desc">Безрамочная манхва-страница с динамичной асимметричной раскладкой: сцены сливаются через градиенты, фигуры остаются целыми. 3 сцены, разный лейаут каждый раз.</p>
                 <pre class="code-block"><code id="prompt-img-gradik">In every message add one vertical manhwa page showing the current moment of the scene.
 Place it in the middle of the message at the most relevant narrative beat.
 Use this exact HTML wrapper and keep all CSS exactly as written. Do not add corner divs, browser frames, phone frames, UI borders, captions, or extra decorative borders. Only replace src="[IMG:GEN]" with the generated image result.
@@ -798,6 +801,134 @@ Rules:
         </div>
     </section>
 
+
+
+    <!-- СТИЛИ -->
+    <section id="styles" class="section">
+        <div class="section-header">
+            <span class="section-tag">
+                <svg class="i-inline" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-palette"/></svg>
+                styles
+            </span>
+            <h2>Стили</h2>
+            <p>Готовые стили для генерации изображений. Листай примеры и копируй текст одним кликом.</p>
+        </div>
+
+        <div class="styles-grid">
+            <article class="style-card">
+                <h3>Velvet Fog</h3>
+                <div class="style-carousel" data-carousel>
+                    <div class="style-slides">
+                        <img class="style-slide is-active" src="стили/Velvet Fog/iig_2026-07-14T12-31-36-825Z.jpeg" alt="Velvet Fog, пример 1" loading="lazy" decoding="async">
+                        <img class="style-slide" src="стили/Velvet Fog/iig_2026-07-14T12-32-02-127Z.jpeg" alt="Velvet Fog, пример 2" loading="lazy" decoding="async">
+                        <img class="style-slide" src="стили/Velvet Fog/iig_2026-07-14T12-32-06-632Z.jpeg" alt="Velvet Fog, пример 3" loading="lazy" decoding="async">
+                        <img class="style-slide" src="стили/Velvet Fog/iig_2026-07-14T12-32-41-064Z.jpeg" alt="Velvet Fog, пример 4" loading="lazy" decoding="async">
+                        <img class="style-slide" src="стили/Velvet Fog/iig_2026-07-14T12-33-44-438Z.jpeg" alt="Velvet Fog, пример 5" loading="lazy" decoding="async">
+                    </div>
+                    <button class="carousel-arrow carousel-prev" type="button" aria-label="Предыдущий пример">‹</button>
+                    <button class="carousel-arrow carousel-next" type="button" aria-label="Следующий пример">›</button>
+                    <div class="carousel-dots" aria-label="Выбор примера"></div>
+                </div>
+                <pre class="code-block"><code id="style-velvet-fog">STYLE LOCK (append verbatim): "Wet painterly digital painting, dreamy ethereal render. Soft youthful realistic face, delicate gentle features, porcelain smooth skin with faint natural flush, half-lidded languid eyes, parted lips, serene expression. Near-lineless rendering, contours dissolving softly into the background, hair breaking into fine wispy loose strands. Translucent overlapping brushstrokes drifting across the figure like light through frosted glass, glossy fluid texture. Soft glowing luminescence from a single cool interior light source, skin softly lit while surroundings sink into dark hazy shadow, no harsh speculars. Muted low-saturation grading, hazy shallow depth, intimate melancholic sleepy mood. Human eyes, natural iris."
+
+NEGATIVE (append verbatim): "Avoid: hard sharp outlines, clean crisp linework, harsh chiaroscuro spotlight, flat even daylight, oversaturated colors, neon, vivid punchy palette, cartoonish 3D render, sharp specular glare, watermark, text, signature, anime blush stickers, two-tone cheeks, hard-edged red cheeks, rosacea, deformed hands, extra fingers, fused limbs."</code></pre>
+                <button class="copy-btn copy-btn-full" type="button" data-copy="style-velvet-fog">
+                    <svg class="i-inline" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-copy"/></svg>
+                    <span class="copy-btn-label">копировать стиль</span>
+                </button>
+            </article>
+
+            <article class="style-card">
+                <h3>Cozy Pastel Daydream</h3>
+                <div class="style-carousel" data-carousel>
+                    <div class="style-slides">
+                        <img class="style-slide is-active" src="стили/Cozy Pastel Daydream/iig_2026-07-14T12-51-48-689Z.jpeg" alt="Cozy Pastel Daydream, пример 1" loading="lazy" decoding="async">
+                        <img class="style-slide" src="стили/Cozy Pastel Daydream/iig_2026-07-14T12-51-48-873Z.jpeg" alt="Cozy Pastel Daydream, пример 2" loading="lazy" decoding="async">
+                        <img class="style-slide" src="стили/Cozy Pastel Daydream/iig_2026-07-14T12-52-35-059Z.jpeg" alt="Cozy Pastel Daydream, пример 3" loading="lazy" decoding="async">
+                        <img class="style-slide" src="стили/Cozy Pastel Daydream/iig_2026-07-14T12-53-34-167Z.jpeg" alt="Cozy Pastel Daydream, пример 4" loading="lazy" decoding="async">
+                        <img class="style-slide" src="стили/Cozy Pastel Daydream/iig_2026-07-14T12-54-03-918Z.jpeg" alt="Cozy Pastel Daydream, пример 5" loading="lazy" decoding="async">
+                    </div>
+                    <button class="carousel-arrow carousel-prev" type="button" aria-label="Предыдущий пример">‹</button>
+                    <button class="carousel-arrow carousel-next" type="button" aria-label="Следующий пример">›</button>
+                    <div class="carousel-dots" aria-label="Выбор примера"></div>
+                </div>
+                <pre class="code-block"><code id="style-cozy-pastel">STYLE LOCK (append verbatim): "Soft pastel illustration technique, gentle storybook coloring. Completely flat coloring, clean smooth even color fills with almost no shading, no sculpted shadows, minimal soft cel-shading only if any. Airy milky pastel palette: lilac-white, soft peach, mint, sky blue, pink gradient tones, everything light desaturated and dreamy. Delicate thin clean lineart. Soft rosy blush with gentle diffused edges. Flat even bright lighting, no contrast, no drama. Subtle grainy watercolor paper texture overlay across the whole image, print-on-paper feel. Calm serene gentle mood."
+
+NEGATIVE (append verbatim): "Avoid: rough dry-brush strokes, gritty texture, heavy shadows, deep shading, sculpted form shadows, high contrast, dramatic lighting, dark muddy tones, film grain noise, realistic rendering, glossy plastic skin, oversaturated colors, neon, thick heavy lineart, watermark, text, signature, deformed hands, extra fingers, fused limbs."</code></pre>
+                <button class="copy-btn copy-btn-full" type="button" data-copy="style-cozy-pastel">
+                    <svg class="i-inline" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-copy"/></svg>
+                    <span class="copy-btn-label">копировать стиль</span>
+                </button>
+            </article>
+
+            <article class="style-card">
+                <h3>Soft Graphite Romance</h3>
+                <div class="style-carousel" data-carousel>
+                    <div class="style-slides">
+                        <img class="style-slide is-active" src="стили/Soft Graphite Romance/iig_2026-07-14T12-39-26-999Z.jpeg" alt="Soft Graphite Romance, пример 1" loading="lazy" decoding="async">
+                        <img class="style-slide" src="стили/Soft Graphite Romance/iig_2026-07-14T12-42-52-924Z.jpeg" alt="Soft Graphite Romance, пример 2" loading="lazy" decoding="async">
+                        <img class="style-slide" src="стили/Soft Graphite Romance/iig_2026-07-14T12-42-53-515Z.jpeg" alt="Soft Graphite Romance, пример 3" loading="lazy" decoding="async">
+                        <img class="style-slide" src="стили/Soft Graphite Romance/iig_2026-07-14T12-44-44-625Z.jpeg" alt="Soft Graphite Romance, пример 4" loading="lazy" decoding="async">
+                        <img class="style-slide" src="стили/Soft Graphite Romance/iig_2026-07-14T12-44-51-968Z.jpeg" alt="Soft Graphite Romance, пример 5" loading="lazy" decoding="async">
+                    </div>
+                    <button class="carousel-arrow carousel-prev" type="button" aria-label="Предыдущий пример">‹</button>
+                    <button class="carousel-arrow carousel-next" type="button" aria-label="Следующий пример">›</button>
+                    <div class="carousel-dots" aria-label="Выбор примера"></div>
+                </div>
+                <pre class="code-block"><code id="style-soft-graphite">STYLE LOCK (append verbatim): "Matte painterly gouache-style digital art, hand-painted look with visible dry-brush texture and subtle paper grain. Living slightly rough pencil-and-brush linework, uneven pressure-varied contours, some strokes broken and sketchy rather than clean. Soft matte skin rendering with no glossy sheen, delicate dry-brush shading, fine visible painterly texture across the face, faintly stippled freckle-like speckling on skin. Hair rendered as many fine individual loose brush strokes, wispy separated strands catching soft light, textured not smooth. Flat soft even lighting, calm and undramatic, dark muted backdrop. Neutral balanced color grading, cool-neutral skin tone, low saturation, muted quiet palette. Stylized semi-realistic proportions. Human eyes, natural iris."
+
+NEGATIVE (append verbatim): "Avoid: olive tint, warm golden tone, sepia, oversaturated colors, neon, vivid palette, glossy plastic skin, smooth airbrush render, flat untextured skin, smooth blurry hair, harsh rim light, dramatic spotlight, chiaroscuro, clean vector outlines, lineless render, cartoonish 3D, sharp specular highlights, watermark, text, signature, anime blush stickers, two-tone cheeks, hard-edged red cheeks, rosacea, deformed hands, extra fingers, fused limbs."</code></pre>
+                <button class="copy-btn copy-btn-full" type="button" data-copy="style-soft-graphite">
+                    <svg class="i-inline" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-copy"/></svg>
+                    <span class="copy-btn-label">копировать стиль</span>
+                </button>
+            </article>
+
+            <article class="style-card">
+                <h3>Inoue Graphite Noir</h3>
+                <div class="style-carousel" data-carousel>
+                    <div class="style-slides">
+                        <img class="style-slide is-active" src="стили/Inoue Graphite Noir/iig_2026-07-14T12-58-10-980Z.jpeg" alt="Inoue Graphite Noir, пример 1" loading="lazy" decoding="async">
+                        <img class="style-slide" src="стили/Inoue Graphite Noir/iig_2026-07-14T12-58-11-653Z.jpeg" alt="Inoue Graphite Noir, пример 2" loading="lazy" decoding="async">
+                        <img class="style-slide" src="стили/Inoue Graphite Noir/iig_2026-07-14T12-59-55-137Z.jpeg" alt="Inoue Graphite Noir, пример 3" loading="lazy" decoding="async">
+                        <img class="style-slide" src="стили/Inoue Graphite Noir/iig_2026-07-14T13-00-39-411Z.jpeg" alt="Inoue Graphite Noir, пример 4" loading="lazy" decoding="async">
+                        <img class="style-slide" src="стили/Inoue Graphite Noir/iig_2026-07-14T13-02-00-554Z.jpeg" alt="Inoue Graphite Noir, пример 5" loading="lazy" decoding="async">
+                    </div>
+                    <button class="carousel-arrow carousel-prev" type="button" aria-label="Предыдущий пример">‹</button>
+                    <button class="carousel-arrow carousel-next" type="button" aria-label="Следующий пример">›</button>
+                    <div class="carousel-dots" aria-label="Выбор примера"></div>
+                </div>
+                <pre class="code-block"><code id="style-inoue-graphite">STYLE LOCK (append verbatim): "Black-and-white graphite-and-ink manga illustration inspired by Takehiko Inoue’s Slam Dunk and Vagabond. The character is rendered entirely in monochrome linework, visible graphite hatching, cross-hatching, broken sketch strokes and deliberate solid-black shapes. Mature realistic anatomy, structured facial features, naturally proportioned human eyes and expressive draftsmanship. A soft, pale, muted color wash appears exclusively in the background, remaining visually separate from the monochrome figure."
+NEGATIVE (append verbatim): "color on the character, painterly character rendering, soft airbrushed skin, moe or chibi features, oversized eyes, text, logo, watermark, signature"</code></pre>
+                <button class="copy-btn copy-btn-full" type="button" data-copy="style-inoue-graphite">
+                    <svg class="i-inline" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-copy"/></svg>
+                    <span class="copy-btn-label">копировать стиль</span>
+                </button>
+            </article>
+
+            <article class="style-card">
+                <h3>NANA Manga Noir</h3>
+                <div class="style-carousel" data-carousel>
+                    <div class="style-slides">
+                        <img class="style-slide is-active" src="стили/NANA Manga Noir/iig_2026-07-14T13-28-19-906Z.jpeg" alt="NANA Manga Noir, пример 1" loading="lazy" decoding="async">
+                        <img class="style-slide" src="стили/NANA Manga Noir/iig_2026-07-14T13-28-21-468Z.jpeg" alt="NANA Manga Noir, пример 2" loading="lazy" decoding="async">
+                        <img class="style-slide" src="стили/NANA Manga Noir/iig_2026-07-14T13-28-54-778Z.jpeg" alt="NANA Manga Noir, пример 3" loading="lazy" decoding="async">
+                        <img class="style-slide" src="стили/NANA Manga Noir/iig_2026-07-14T13-29-36-857Z.jpeg" alt="NANA Manga Noir, пример 4" loading="lazy" decoding="async">
+                        <img class="style-slide" src="стили/NANA Manga Noir/iig_2026-07-14T13-29-54-970Z.jpeg" alt="NANA Manga Noir, пример 5" loading="lazy" decoding="async">
+                    </div>
+                    <button class="carousel-arrow carousel-prev" type="button" aria-label="Предыдущий пример">‹</button>
+                    <button class="carousel-arrow carousel-next" type="button" aria-label="Следующий пример">›</button>
+                    <div class="carousel-dots" aria-label="Выбор примера"></div>
+                </div>
+                <pre class="code-block"><code id="style-nana-noir">STYLE LOCK (append verbatim): "Black-and-white Japanese manga, Ai Yazawa NANA manga style, josei shoujo linework. Pure monochrome ink on white, clean flat black-and-white, NO color, NOT painterly, NOT rendered, NOT semi-realistic, NOT grayscale painting. Elegant thin fashion-illustration ink lineart, delicate confident inking. Shadows drawn as hatching, cross-hatching, solid black fills and grey screentone dots, NOT soft shading. Tall slender elongated josei proportions, softly elongated mature faces, gentle jaw, large soft almond eyes with long lashes. Decorative backgrounds with flowers, patterns and screentone, quiet melancholic rock-drama mood. Human eyes, natural iris."
+NEGATIVE (append verbatim): "color, painted or airbrushed rendering, smooth grayscale gradients, moe or chibi features, text, logo, watermark, signature"</code></pre>
+                <button class="copy-btn copy-btn-full" type="button" data-copy="style-nana-noir">
+                    <svg class="i-inline" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-copy"/></svg>
+                    <span class="copy-btn-label">копировать стиль</span>
+                </button>
+            </article>
+        </div>
+    </section>
 
 
     <!-- РАСШИРЕНИЯ -->
@@ -896,7 +1027,7 @@ Rules:
                 credits
             </span>
             <h2>Благодарности</h2>
-            <p>Nesquik Duo не разивался бы без вас!</p>
+            <p>Nesquik Duo не развивался бы без вас!</p>
         </div>
 
         <div class="credits-screen" aria-label="Титры с благодарностями">
@@ -944,6 +1075,7 @@ Rules:
                 <a href="#versions">Версии</a>
                 <a href="#regex">Регексы</a>
                 <a href="#prompts">Промпты</a>
+                <a href="#styles">Стили</a>
                 <a href="#extensions">Расширения</a>
                 <a href="#credits">Благодарности</a>
             </div>
@@ -966,6 +1098,6 @@ Rules:
         <span class="toast-text">Скопировано!</span>
     </div>
 
-    <script src="js/main.js?v=3"></script>
+    <script src="js/main.js?v=4"></script>
 </body>
 </html>
