@@ -7,21 +7,6 @@
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    document.querySelectorAll('[data-prompt-src]').forEach(async codeEl => {
-        const source = codeEl.dataset.promptSrc;
-        const copyButton = document.querySelector(`[data-copy="${codeEl.id}"]`);
-        codeEl.textContent = 'Загрузка промпта...';
-        if (copyButton) copyButton.disabled = true;
-        try {
-            const response = await fetch(source);
-            if (!response.ok) throw new Error(`HTTP ${response.status}`);
-            codeEl.textContent = await response.text();
-            if (copyButton) copyButton.disabled = false;
-        } catch {
-            codeEl.textContent = 'Не удалось загрузить промпт. Обнови страницу и попробуй снова.';
-        }
-    });
-
     /* ---------- Отдельная категория пресетов для изображений ---------- */
     const imagePresetsGrid = document.getElementById('image-presets-grid');
     const imagePresets = Array.isArray(window.NESQUIK_IMAGE_PRESETS)
