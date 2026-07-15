@@ -5,14 +5,99 @@
 (() => {
     'use strict';
 
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* ---------- Отдельная категория пресетов для изображений ---------- */
+    const imagePresetsGrid = document.getElementById('image-presets-grid');
+    const imagePresets = Array.isArray(window.NESQUIK_IMAGE_PRESETS)
+        ? window.NESQUIK_IMAGE_PRESETS.filter(preset => preset?.type === 'image-preset')
+        : [];
+
+    if (imagePresetsGrid) {
+        imagePresets.forEach(preset => {
+            const card = document.createElement('article');
+            card.className = 'image-preset-card';
+
+            const preview = document.createElement('div');
+            preview.className = 'image-preset-preview';
+            preview.style.setProperty('--preview-position', preset.objectPosition || 'center');
+            preview.style.setProperty('--preview-fit', preset.imageFit === 'contain' ? 'contain' : 'cover');
+            if (preset.previewImage) {
+                const image = document.createElement('img');
+                image.src = preset.previewImage;
+                image.alt = `Превью: ${preset.title}`;
+                image.loading = 'lazy';
+                image.decoding = 'async';
+                preview.appendChild(image);
+            }
+            const fallback = document.createElement('div');
+            fallback.className = 'image-preset-preview-fallback';
+            fallback.textContent = preset.previewImage ? 'Превью недоступно' : 'Превью будет добавлено позднее';
+            preview.appendChild(fallback);
+            if (!preset.previewImage) preview.classList.add('placeholder');
+            card.appendChild(preview);
+
+            const body = document.createElement('div');
+            body.className = 'image-preset-body';
+            const title = document.createElement('h3');
+            title.textContent = preset.title;
+            const description = document.createElement('p');
+            description.className = 'image-preset-description';
+            description.textContent = preset.description;
+            body.append(title, description);
+
+            const metaValues = [preset.model, preset.version].filter(Boolean);
+            if (metaValues.length) {
+                const meta = document.createElement('div');
+                meta.className = 'image-preset-meta';
+                metaValues.forEach(value => {
+                    const item = document.createElement('span');
+                    item.textContent = value;
+                    meta.appendChild(item);
+                });
+                body.appendChild(meta);
+            }
+
+            if (Array.isArray(preset.tags) && preset.tags.length) {
+                const tags = document.createElement('div');
+                tags.className = 'image-preset-tags';
+                preset.tags.forEach(value => {
+                    const tag = document.createElement('span');
+                    tag.textContent = value;
+                    tags.appendChild(tag);
+                });
+                body.appendChild(tags);
+            }
+
+            if (preset.downloadUrl) {
+                const download = document.createElement('a');
+                download.className = 'btn btn-primary btn-small';
+                download.href = preset.downloadUrl;
+                download.download = '';
+                download.textContent = 'Скачать image-пресет';
+                body.appendChild(download);
+            }
+
+            card.appendChild(body);
+            imagePresetsGrid.appendChild(card);
+        });
+    }
+
     /* ---------- Переключатель темы (светлая/тёмная) ---------- */
     const themeToggle = document.querySelector('.theme-toggle');
     if (themeToggle) {
+        const updateThemeToggle = () => {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            themeToggle.setAttribute('aria-label', isDark ? 'Включить светлую тему' : 'Включить тёмную тему');
+            themeToggle.setAttribute('aria-pressed', String(isDark));
+        };
+        updateThemeToggle();
         themeToggle.addEventListener('click', () => {
             const root = document.documentElement;
             const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
             root.setAttribute('data-theme', next);
             try { localStorage.setItem('nd-theme', next); } catch { /* ignore */ }
+            updateThemeToggle();
         });
     }
 
@@ -72,7 +157,7 @@
             const isSection = target.tagName === 'SECTION';
             const offset = isSection ? 90 : 110;
             const top = target.getBoundingClientRect().top + window.scrollY - offset;
-            window.scrollTo({ top, behavior: 'smooth' });
+            window.scrollTo({ top, behavior: reduceMotion ? 'auto' : 'smooth' });
         });
     });
 
@@ -162,7 +247,9 @@
 
     revealTargets.forEach(el => el.classList.add('reveal'));
 
-    if ('IntersectionObserver' in window) {
+    if (reduceMotion) {
+        revealTargets.forEach(el => el.classList.add('visible'));
+    } else if ('IntersectionObserver' in window) {
         const io = new IntersectionObserver((entries) => {
             entries.forEach((entry, idx) => {
                 if (entry.isIntersecting) {
@@ -237,7 +324,7 @@
         // Автосмена каждые 6 секунд, только когда hero на экране (экономим CPU)
         let intervalId = null;
         const startAuto = () => {
-            if (intervalId) return;
+            if (intervalId || reduceMotion) return;
             intervalId = setInterval(nextSlide, 6000);
         };
         const stopAuto = () => {
@@ -391,13 +478,31 @@
     });
 
     /* ---------- Обработка ошибок загрузки картинок (подстраховка) ---------- */
+    document.querySelectorAll('.prompt-preview').forEach(preview => {
+        const image = preview.querySelector('img');
+        if (!image) return;
+        preview.style.setProperty('--preview-position', image.dataset.objectPosition || 'center');
+        preview.style.setProperty('--preview-fit', image.dataset.imageFit === 'contain' ? 'contain' : 'cover');
+
+        const fallback = document.createElement('div');
+        fallback.className = 'prompt-preview-fallback';
+        fallback.setAttribute('role', 'img');
+        fallback.setAttribute('aria-label', 'Превью недоступно');
+        fallback.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-image"/></svg><span>Превью недоступно</span>';
+        preview.appendChild(fallback);
+    });
+
     document.querySelectorAll('img').forEach(img => {
-        if (img.complete && img.naturalWidth === 0) {
+        const handleError = () => {
             img.style.display = 'none';
             img.parentElement?.classList.add('placeholder');
+        };
+        img.addEventListener('error', handleError, { once: true });
+        if (img.complete && img.naturalWidth === 0) {
+            handleError();
         }
     });
 
-    console.log('%cNesquik Duo ♡', 'color: #b892ff; font-size: 18px; font-weight: bold;');
-    console.log('%cПресет загружен с любовью ✦', 'color: #ff9ec8; font-size: 12px;');
+    console.log('%cNesquik Duo ♡', 'color: #9D315F; font-size: 18px; font-weight: bold;');
+    console.log('%cПресет загружен с любовью ✦', 'color: #D85F91; font-size: 12px;');
 })();
