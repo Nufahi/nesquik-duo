@@ -81,8 +81,8 @@
     --r-full: 999px;
 
     /* Типографика */
-    --font-display: 'Comfortaa', 'Nunito', system-ui, sans-serif;
-    --font-body:    'Nunito', 'Quicksand', system-ui, sans-serif;
+    --font-display: 'Oswald', 'Arial Narrow', system-ui, sans-serif;
+    --font-body:    'IBM Plex Sans', Arial, system-ui, sans-serif;
 
     /* Переходы */
     --t-fast: 180ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -592,7 +592,7 @@ code, pre {
     backface-visibility: hidden;
     /* Задача 1: запас места под drop-shadow, чтобы тень не обрезалась краем */
     overflow: visible;
-    padding-bottom: 38px;
+    padding-bottom: 0;
 }
 
 @keyframes card-float {
@@ -2976,80 +2976,57 @@ button:focus-visible {
     display: grid;
 }
 
-.image-presets-section {
-    max-width: none;
-    background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--secondary) 12%, transparent), transparent);
+.image-presets-block {
+    max-width: 1100px;
+    margin: 44px auto 0;
+    padding-top: 36px;
+    border-top: 1px dashed var(--border);
+}
+
+.image-presets-title {
+    margin: 0 0 8px;
+}
+
+.image-presets-note {
+    margin: 0 auto 20px;
+    color: var(--text-muted);
+    text-align: center;
 }
 
 .image-presets-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 24px;
     max-width: 1100px;
     margin: 0 auto;
 }
 
-.image-preset-card,
-.image-presets-empty {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--r-xl);
-    box-shadow: var(--shadow-md);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-}
-
 .image-preset-card {
+    grid-column: 1 / -1;
+    width: min(100%, 540px);
+    justify-self: center;
     min-width: 0;
-    overflow: hidden;
-    transition: transform var(--t-med), box-shadow var(--t-med);
-}
-
-.image-preset-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
-}
-
-.image-preset-preview {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 16 / 10;
-    overflow: hidden;
-    background: linear-gradient(135deg, var(--primary-soft), var(--secondary));
-}
-
-.image-preset-preview img {
-    width: 100%;
-    height: 100%;
-    object-fit: var(--preview-fit, cover);
-    object-position: var(--preview-position, center);
-}
-
-.image-preset-preview-fallback {
-    position: absolute;
-    inset: 0;
-    display: none;
-    place-items: center;
-    padding: 20px;
-    color: var(--text-muted);
-    text-align: center;
-}
-
-.image-preset-preview.placeholder .image-preset-preview-fallback {
-    display: grid;
+    background: linear-gradient(135deg, color-mix(in srgb, var(--secondary) 18%, var(--surface)), var(--surface));
 }
 
 .image-preset-body {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    padding: 24px;
+    align-items: flex-start;
+    gap: 10px;
 }
 
-.image-preset-body h3,
-.image-presets-empty h3 {
+.image-preset-body h3 {
     font-family: var(--font-display);
     overflow-wrap: anywhere;
+}
+
+.image-preset-body .version-badge {
+    margin-bottom: 4px;
+}
+
+.image-preset-body .btn {
+    margin-top: 6px;
 }
 
 .image-preset-meta,
@@ -3069,27 +3046,8 @@ button:focus-visible {
     font-weight: 700;
 }
 
-.image-preset-description,
-.image-presets-empty p {
+.image-preset-description {
     color: var(--text-muted);
-}
-
-.image-presets-empty {
-    max-width: 680px;
-    margin: 0 auto;
-    padding: 38px 28px;
-    text-align: center;
-}
-
-.image-presets-grid:not(:empty) + .image-presets-empty {
-    display: none;
-}
-
-.image-presets-empty-icon {
-    width: 48px;
-    height: 48px;
-    margin: 0 auto 14px;
-    color: var(--secondary);
 }
 
 .extension-card {
@@ -3140,6 +3098,11 @@ button:focus-visible {
     .extensions-grid,
     .image-presets-grid {
         grid-template-columns: minmax(0, 1fr);
+    }
+
+    .image-preset-card {
+        grid-column: auto;
+        width: 100%;
     }
 
     .extension-actions {

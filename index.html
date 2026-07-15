@@ -9,8 +9,8 @@
     <link rel="apple-touch-icon" href="logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Comfortaa:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css?v=6">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css?v=7">
     <!-- Задача 3: маскот первого экрана грузим максимально рано -->
     <link rel="preload" as="image" href="новые картинки на главную стр/IMG_20260715_134318_808.png" fetchpriority="high">
 
@@ -128,7 +128,6 @@
         </a>
         <nav class="nav-links" id="site-navigation">
             <a href="#versions">Версии</a>
-            <a href="#image-presets">Image-пресеты</a>
             <a href="#regex">Регексы</a>
             <a href="#prompts">Промпты</a>
             <a href="#styles">Стили</a>
@@ -180,7 +179,7 @@
                     <span class="stat-label">регексов</span>
                 </div>
                 <div class="stat">
-                    <span class="stat-value">3</span>
+                    <span class="stat-value">4</span>
                     <span class="stat-label">пресета</span>
                 </div>
             </div>
@@ -188,20 +187,13 @@
         <div class="hero-visual">
             <div class="hero-image-wrap">
                 <div class="hero-image-glow" aria-hidden="true"></div>
-                <!-- Слайды меняются автоматически, точки позволяют выбрать кадр вручную -->
+                <!-- Слайды меняются автоматически -->
                 <div class="hero-slides" data-active="0">
                     <img class="hero-image hero-slide is-active" src="новые картинки на главную стр/IMG_20260715_134318_808.png" alt="Иллюстрация Nesquik Duo, кадр 1" loading="eager" fetchpriority="high" decoding="async">
                     <img class="hero-image hero-slide" src="новые картинки на главную стр/IMG_20260715_134318_919.png" alt="Иллюстрация Nesquik Duo, кадр 2" loading="lazy" decoding="async">
                     <img class="hero-image hero-slide" src="новые картинки на главную стр/IMG_20260715_134319_587.png" alt="Иллюстрация Nesquik Duo, кадр 3" loading="lazy" decoding="async">
                     <img class="hero-image hero-slide" src="новые картинки на главную стр/IMG_20260715_134322_164.png" alt="Иллюстрация Nesquik Duo, кадр 4" loading="lazy" decoding="async">
                     <img class="hero-image hero-slide" src="новые картинки на главную стр/IMG_20260715_134323_902.png" alt="Иллюстрация Nesquik Duo, кадр 5" loading="lazy" decoding="async">
-                </div>
-                <div class="carousel-dots hero-dots" aria-label="Выбор иллюстрации">
-                    <button class="carousel-dot is-active" type="button" data-slide="0" aria-label="Кадр 1" aria-current="true"></button>
-                    <button class="carousel-dot" type="button" data-slide="1" aria-label="Кадр 2"></button>
-                    <button class="carousel-dot" type="button" data-slide="2" aria-label="Кадр 3"></button>
-                    <button class="carousel-dot" type="button" data-slide="3" aria-label="Кадр 4"></button>
-                    <button class="carousel-dot" type="button" data-slide="4" aria-label="Кадр 5"></button>
                 </div>
             </div>
         </div>
@@ -342,23 +334,14 @@
             </article>
 
         </div>
-    </section>
 
-    <!-- IMAGE-ПРЕСЕТЫ: данные заполняются отдельно в js/image-presets.js -->
-    <section id="image-presets" class="section image-presets-section">
-        <div class="section-header">
-            <span class="section-tag section-tag-blue">
+        <div class="image-presets-block">
+            <h3 class="subsection-title image-presets-title">
                 <svg class="i-inline" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-image"/></svg>
-                image presets
-            </span>
-            <h2>Пресеты для изображений</h2>
-            <p>Отдельная категория для генерации изображений. Эти пресеты не относятся к Claude Opus и другим текстовым моделям.</p>
-        </div>
-        <div id="image-presets-grid" class="image-presets-grid" aria-live="polite"></div>
-        <div id="image-presets-empty" class="image-presets-empty">
-            <svg class="image-presets-empty-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-image"/></svg>
-            <h3>Скоро здесь появится image-пресет</h3>
-            <p>Название, модель, версия, превью и файл будут добавлены позднее.</p>
+                Пресеты для генерации изображений
+            </h3>
+            <p class="image-presets-note">Отдельный тип пресетов, не относящийся к версиям Claude.</p>
+            <div id="image-presets-grid" class="image-presets-grid" aria-live="polite"></div>
         </div>
     </section>
 
@@ -1128,7 +1111,6 @@ NEGATIVE (append verbatim): "color, painted or airbrushed rendering, smooth gray
             <div class="footer-links">
                 <h4>Навигация</h4>
                 <a href="#versions">Версии</a>
-                <a href="#image-presets">Image-пресеты</a>
                 <a href="#regex">Регексы</a>
                 <a href="#prompts">Промпты</a>
                 <a href="#styles">Стили</a>
@@ -1155,6 +1137,6 @@ NEGATIVE (append verbatim): "color, painted or airbrushed rendering, smooth gray
     </div>
 
     <script src="js/image-presets.js?v=1"></script>
-    <script src="js/main.js?v=5"></script>
+    <script src="js/main.js?v=6"></script>
 </body>
 </html>

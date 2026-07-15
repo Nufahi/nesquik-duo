@@ -16,35 +16,19 @@
     if (imagePresetsGrid) {
         imagePresets.forEach(preset => {
             const card = document.createElement('article');
-            card.className = 'image-preset-card';
-
-            const preview = document.createElement('div');
-            preview.className = 'image-preset-preview';
-            preview.style.setProperty('--preview-position', preset.objectPosition || 'center');
-            preview.style.setProperty('--preview-fit', preset.imageFit === 'contain' ? 'contain' : 'cover');
-            if (preset.previewImage) {
-                const image = document.createElement('img');
-                image.src = preset.previewImage;
-                image.alt = `Превью: ${preset.title}`;
-                image.loading = 'lazy';
-                image.decoding = 'async';
-                preview.appendChild(image);
-            }
-            const fallback = document.createElement('div');
-            fallback.className = 'image-preset-preview-fallback';
-            fallback.textContent = preset.previewImage ? 'Превью недоступно' : 'Превью будет добавлено позднее';
-            preview.appendChild(fallback);
-            if (!preset.previewImage) preview.classList.add('placeholder');
-            card.appendChild(preview);
+            card.className = 'version-card-new image-preset-card';
 
             const body = document.createElement('div');
             body.className = 'image-preset-body';
+            const badge = document.createElement('div');
+            badge.className = 'version-badge badge-blue';
+            badge.textContent = 'Генерация изображений';
             const title = document.createElement('h3');
             title.textContent = preset.title;
             const description = document.createElement('p');
             description.className = 'image-preset-description';
             description.textContent = preset.description;
-            body.append(title, description);
+            body.append(badge, title, description);
 
             const metaValues = [preset.model, preset.version].filter(Boolean);
             if (metaValues.length) {
@@ -74,7 +58,7 @@
                 download.className = 'btn btn-primary btn-small';
                 download.href = preset.downloadUrl;
                 download.download = '';
-                download.textContent = 'Скачать image-пресет';
+                download.innerHTML = '<span>Скачать</span><svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-down"/></svg>';
                 body.appendChild(download);
             }
 
@@ -308,15 +292,9 @@
        в hero-секцию переключаемся на следующий слайд (даёт ощущение «обновления»). */
     const heroSlides = document.querySelectorAll('.hero-slide');
     if (heroSlides.length > 1) {
-        const heroDots = document.querySelectorAll('.hero-dots .carousel-dot');
         let activeIdx = 0;
         const setActive = (idx) => {
             heroSlides.forEach((s, i) => s.classList.toggle('is-active', i === idx));
-            heroDots.forEach((dot, i) => {
-                dot.classList.toggle('is-active', i === idx);
-                if (i === idx) dot.setAttribute('aria-current', 'true');
-                else dot.removeAttribute('aria-current');
-            });
             activeIdx = idx;
         };
         const nextSlide = () => setActive((activeIdx + 1) % heroSlides.length);
@@ -332,14 +310,6 @@
             clearInterval(intervalId);
             intervalId = null;
         };
-
-        heroDots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                setActive(index);
-                stopAuto();
-                startAuto();
-            });
-        });
 
         const heroSection = document.getElementById('hero');
         if (heroSection && 'IntersectionObserver' in window) {
