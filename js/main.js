@@ -7,6 +7,159 @@
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+    /* ---------- Переключатель языка интерфейса ---------- */
+    const translations = new Map(Object.entries({
+        'Версии': 'Versions',
+        'Регексы': 'Regex',
+        'Промпты': 'Prompts',
+        'Стили': 'Styles',
+        'Расширения': 'Extensions',
+        'пресеты для SillyTavern': 'presets for SillyTavern',
+        'Пресет для Claude Opus и других моделей Claude.': 'A preset for Claude Opus and other Claude models.',
+        'Скачать последнюю версию': 'Download latest version',
+        'Все версии': 'All versions',
+        'актуальная версия': 'current version',
+        'регексов': 'regex scripts',
+        'пресета': 'presets',
+        'Версии пресета': 'Preset versions',
+        'Выбирай нужный вариант и скачивай файл одним кликом.': 'Choose the version you need and download it in one click.',
+        'Самый свежий релиз пресета под Opus.': 'The latest preset release for Opus.',
+        'Отдельный пресет, заточенный под Claude Sonnet 4.6': 'A dedicated preset optimized for Claude Sonnet 4.6',
+        'Прошлые версии пресета для Claude Opus 4.6': 'Previous preset versions for Claude Opus 4.6',
+        'Скачать': 'Download',
+        'Гайд': 'Guide',
+        'Пресеты для генерации изображений': 'Image generation presets',
+        'Отдельный тип пресетов, не относящийся к версиям Claude.': 'A separate preset type unrelated to Claude versions.',
+        'Регулярные выражения': 'Regular expressions',
+        'Готовые регексы под пресет: одни делают чат красивым, другие чистят промпт от лишнего, чтобы не тратить токены. Скачивай и импортируй в SillyTavern через': 'Ready-made regex scripts for the preset: some improve the chat layout, while others clean unnecessary content from prompts to save tokens. Download and import them into SillyTavern via',
+        'Сообщения': 'Messages',
+        'Рамочка': 'Image frame',
+        'Сдираем весь HTML': 'Strip all HTML',
+        'Удали думалку': 'Remove thinking blocks',
+        'Удалить инфоблок': 'Remove infoblock',
+        'Чистим камтинки': 'Clean image containers',
+        'отображение': 'display',
+        'промпт': 'prompt',
+        'Превращает переписку в чате в настоящие пузырьки мессенджера: имя контакта, входящие и исходящие сообщения. Пиши в формате': 'Turns chat messages into messenger-style bubbles with contact names and incoming and outgoing messages. Use the format',
+        'остальное регекс сделает сам.': 'and the regex will handle the rest.',
+        '— остальное регекс сделает сам.': 'and the regex will handle the rest.',
+        'Оборачивает сгенерированные картинки в аккуратную рамку, которая подстраивается под цвета твоей темы SillyTavern. Картинки перестают выглядеть «вставленными» и становятся частью чата.': 'Wraps generated images in a neat frame that adapts to your SillyTavern theme colors, making images feel like part of the chat.',
+        'Полностью вычищает HTML-теги из текста перед отправкой модели. Claude видит чистую прозу вместо разметки — меньше токенов, меньше шансов, что модель начнёт подражать тегам.': 'Removes all HTML tags before text is sent to the model. Claude sees clean prose instead of markup, saving tokens and reducing tag imitation.',
+        'Срезает блоки размышлений': 'Removes',
+        'из истории перед отправкой. Claude не перечитывает свои старые мысли, а контекст остаётся лёгким.': 'blocks from history before sending. Claude does not reread its old reasoning, keeping the context lighter.',
+        'Вырезает блоки': 'Removes',
+        'из старых сообщений, отправляемых модели. На экране инфоблоки остаются, а в промпт не попадают.': 'blocks from old messages sent to the model. Infoblocks remain visible on screen but are excluded from the prompt.',
+        'Удаляет из промпта контейнеры со сгенерированными картинками. Картинки видишь только ты — модель получает чистый текст без мусорной обвязки.': 'Removes generated-image containers from prompts. You still see the images while the model receives clean text.',
+        'скачать JSON': 'download JSON',
+        'Метка': 'The',
+        '— регекс чистит текст перед отправкой модели, метка': 'label means the regex cleans text before it is sent to the model; the',
+        '— красиво оформляет сообщения на экране.': 'label means it formats on-screen messages.',
+        'Для картинок. Жми на кнопку — текст скопируется в буфер, останется только вставить.': 'For images. Click the button to copy the text, then simply paste it.',
+        'Картинки': 'Images',
+        'Картинки шорт': 'Short images',
+        'Картинки биг': 'Large images',
+        'Комикс': 'Comic',
+        'Градик подряд': 'Continuous gradient',
+        'Градик': 'Gradient',
+        'копировать весь промпт': 'copy full prompt',
+        'Готовые стили для генерации изображений. Листай примеры и копируй текст одним кликом.': 'Ready-made image generation styles. Browse examples and copy the text in one click.',
+        'копировать стиль': 'copy style',
+        'Мои расширения': 'My extensions',
+        'Расширения для SillyTavern, которые я сделала сама. Устанавливаются за минуту через': 'SillyTavern extensions I made myself. Install them in a minute via',
+        'по ссылке с GitHub, а подробности — в постах в Telegram.': 'using a GitHub URL; details are available in the Telegram posts.',
+        'Помощник по темам: помогает настраивать внешний вид SillyTavern без копания в CSS. Меняешь цвета и элементы — сразу видишь результат.': 'A theme assistant that lets you customize SillyTavern without digging through CSS. Change colors and elements and see the result instantly.',
+        'Удобное управление лорбуками: быстрый доступ к записям, понятная структура и меньше кликов, когда лорбуков стало слишком много.': 'Convenient lorebook management with quick entry access, a clear structure, and fewer clicks when your collection grows.',
+        'Инспектор элементов прямо внутри SillyTavern: кликаешь по любому элементу интерфейса — видишь его CSS-классы. Незаменим, когда пишешь свою тему.': 'An element inspector inside SillyTavern. Click any interface element to see its CSS classes, ideal for creating themes.',
+        'Персональные переключатели промптов для каждого персонажа: включай и выключай нужные блоки на лету, не перелопачивая весь пресет.': 'Per-character prompt toggles that let you enable or disable blocks on the fly without editing the entire preset.',
+        'Менеджер хранилища изображений SillyTavern: показывает папки и занимаемое место, поддерживает поиск, просмотр, массовую очистку и корзину. Интерфейс адаптирован для мобильных устройств.': 'A SillyTavern image storage manager with folder sizes, search, previews, bulk cleanup, trash, and a mobile-friendly interface.',
+        'Менеджер уведомлений SillyTavern: фильтрует toast-сообщения по тексту, регулярному выражению и типу, ведёт журнал и позволяет настраивать положение, размер, длительность и оформление уведомлений.': 'A SillyTavern notification manager that filters toasts by text, regex, and type, keeps a log, and customizes their position, size, duration, and appearance.',
+        'Пост': 'Post',
+        'Благодарности': 'Credits',
+        'Nesquik Duo не развивался бы без вас!': 'Nesquik Duo would not have grown without you!',
+        '· Nesquik Duo представляет ·': '· Nesquik Duo presents ·',
+        'моему первому фанату': 'my first fan',
+        'за веру в меня и мои умственные возможности': 'for believing in me and my abilities',
+        'за любовь к первому пову и диско опусу!': 'for loving first-person POV and disco Opus!',
+        'чатик SISTAVERN': 'SISTAVERN chat',
+        'за то, что мы никогда не попадем в рай': 'for ensuring we will never get into heaven',
+        'все-все, кто использует пресет': 'everyone who uses the preset',
+        'за то, что вы есть ♡': 'for being here ♡',
+        '· конец ·': '· the end ·',
+        'Пресет для SillyTavern под Claude Opus и другие модели Claude': 'A SillyTavern preset for Claude Opus and other Claude models',
+        'Навигация': 'Navigation',
+        'Ссылки': 'Links',
+        'Благодарности': 'Credits',
+        '© 2026 Nesquik Duo · Сделано с': '© 2026 Nesquik Duo · Made with',
+        'Скопировано!': 'Copied!'
+    }));
+
+    const originalText = new WeakMap();
+    const originalAttributes = new WeakMap();
+    const translatableAttributes = ['aria-label', 'title', 'alt', 'content'];
+    const translateAttribute = (value) => {
+        if (translations.has(value)) return translations.get(value);
+        if (value.startsWith('Nesquik Duo — для SillyTavern')) {
+            return 'Nesquik Duo for SillyTavern, Claude Opus, and other Claude models. Preset versions, regex scripts, prompts, styles, and extensions.';
+        }
+        return value
+            .replace('Переключить тему', 'Toggle theme')
+            .replace('Меню', 'Menu')
+            .replace('Предыдущий пример', 'Previous example')
+            .replace('Следующий пример', 'Next example')
+            .replace('Выбор примера', 'Choose example')
+            .replace('Титры с благодарностями', 'Scrolling credits')
+            .replace('Иллюстрация', 'Illustration')
+            .replace('кадр', 'slide')
+            .replace('Пример:', 'Example:')
+            .replace('пример', 'example');
+    };
+    let updateThemeToggle = () => {};
+    const applyLanguage = (language) => {
+        const isEnglish = language === 'en';
+        document.documentElement.lang = isEnglish ? 'en' : 'ru';
+        document.documentElement.dataset.lang = isEnglish ? 'en' : 'ru';
+        document.title = isEnglish ? 'Nesquik Duo · Preset for SillyTavern' : 'Nesquik Duo · Пресет для SillyTavern';
+
+        const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+            acceptNode(node) {
+                return node.parentElement?.closest('script, style, svg, pre, code') || !node.textContent.trim()
+                    ? NodeFilter.FILTER_REJECT
+                    : NodeFilter.FILTER_ACCEPT;
+            }
+        });
+        while (walker.nextNode()) {
+            const node = walker.currentNode;
+            if (!originalText.has(node)) originalText.set(node, node.textContent);
+            const source = originalText.get(node);
+            const trimmed = source.trim();
+            const translated = translations.get(trimmed);
+            node.textContent = isEnglish && translated
+                ? source.replace(trimmed, translated)
+                : source;
+        }
+
+        document.querySelectorAll(translatableAttributes.map(name => `[${name}]`).join(',')).forEach(element => {
+            if (!originalAttributes.has(element)) originalAttributes.set(element, {});
+            const originals = originalAttributes.get(element);
+            translatableAttributes.forEach(name => {
+                if (!element.hasAttribute(name)) return;
+                if (!(name in originals)) originals[name] = element.getAttribute(name);
+                element.setAttribute(name, isEnglish ? translateAttribute(originals[name]) : originals[name]);
+            });
+        });
+    };
+    const currentLanguage = () => document.documentElement.dataset.lang === 'en' ? 'en' : 'ru';
+    const t = (russian, english) => currentLanguage() === 'en' ? english : russian;
+    applyLanguage(currentLanguage());
+
+    const languageToggle = document.querySelector('.language-toggle');
+    languageToggle?.addEventListener('click', () => {
+        const next = currentLanguage() === 'ru' ? 'en' : 'ru';
+        try { localStorage.setItem('nd-lang', next); } catch { /* ignore */ }
+        applyLanguage(next);
+        updateThemeToggle();
+    });
+
     /* ---------- Отдельная категория пресетов для изображений ---------- */
     const imagePresetsGrid = document.getElementById('image-presets-grid');
     const imagePresets = Array.isArray(window.NESQUIK_IMAGE_PRESETS)
@@ -22,12 +175,15 @@
             body.className = 'image-preset-body';
             const badge = document.createElement('div');
             badge.className = 'version-badge badge-blue';
-            badge.textContent = 'Генерация изображений';
+            badge.textContent = t('Генерация изображений', 'Image generation');
+            originalText.set(badge.firstChild, 'Генерация изображений');
             const title = document.createElement('h3');
             title.textContent = preset.title;
             const description = document.createElement('p');
             description.className = 'image-preset-description';
-            description.textContent = preset.description;
+            description.textContent = currentLanguage() === 'en' && preset.descriptionEn ? preset.descriptionEn : preset.description;
+            originalText.set(description.firstChild, preset.description);
+            if (preset.descriptionEn) translations.set(preset.description, preset.descriptionEn);
             body.append(badge, title, description);
 
             const metaValues = [preset.model, preset.version].filter(Boolean);
@@ -47,7 +203,9 @@
                 tags.className = 'image-preset-tags';
                 preset.tags.forEach(value => {
                     const tag = document.createElement('span');
-                    tag.textContent = value;
+                    tag.textContent = value === 'Изображения' ? t('Изображения', 'Images') : value;
+                    originalText.set(tag.firstChild, value);
+                    if (value === 'Изображения') translations.set(value, 'Images');
                     tags.appendChild(tag);
                 });
                 body.appendChild(tags);
@@ -58,7 +216,8 @@
                 download.className = 'btn btn-primary btn-small';
                 download.href = preset.downloadUrl;
                 download.download = '';
-                download.innerHTML = '<span>Скачать</span><svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-down"/></svg>';
+                download.innerHTML = `<span>${t('Скачать', 'Download')}</span><svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-down"/></svg>`;
+                originalText.set(download.querySelector('span').firstChild, 'Скачать');
                 body.appendChild(download);
             }
 
@@ -70,9 +229,11 @@
     /* ---------- Переключатель темы (светлая/тёмная) ---------- */
     const themeToggle = document.querySelector('.theme-toggle');
     if (themeToggle) {
-        const updateThemeToggle = () => {
+        updateThemeToggle = () => {
             const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-            themeToggle.setAttribute('aria-label', isDark ? 'Включить светлую тему' : 'Включить тёмную тему');
+            themeToggle.setAttribute('aria-label', isDark
+                ? t('Включить светлую тему', 'Enable light theme')
+                : t('Включить тёмную тему', 'Enable dark theme'));
             themeToggle.setAttribute('aria-pressed', String(isDark));
         };
         updateThemeToggle();
@@ -147,7 +308,7 @@
 
     /* ---------- Копирование кода ---------- */
     const toast = document.getElementById('toast');
-    const showToast = (text = 'Скопировано!') => {
+    const showToast = (text = t('Скопировано!', 'Copied!')) => {
         if (!toast) return;
         toast.querySelector('.toast-text').textContent = text;
         toast.classList.add('show');
@@ -199,7 +360,7 @@
             }
 
             if (!copied) {
-                showToast('Не удалось скопировать — выдели текст вручную');
+                showToast(t('Не удалось скопировать — выдели текст вручную', 'Could not copy. Select the text manually.'));
                 return;
             }
 
@@ -207,11 +368,11 @@
             const labelEl = btn.querySelector('.copy-btn-label');
             const prevLabel = labelEl ? labelEl.textContent : btn.textContent;
             if (labelEl) {
-                labelEl.textContent = '✓ готово';
+                labelEl.textContent = t('✓ готово', '✓ done');
             } else {
-                btn.textContent = '✓ готово';
+                btn.textContent = t('✓ готово', '✓ done');
             }
-            showToast('Скопировано в буфер обмена ♡');
+            showToast(t('Скопировано в буфер обмена ♡', 'Copied to clipboard ♡'));
 
             setTimeout(() => {
                 btn.classList.remove('copied');
@@ -354,7 +515,7 @@
             const dot = document.createElement('button');
             dot.type = 'button';
             dot.className = `carousel-dot${index === 0 ? ' is-active' : ''}`;
-            dot.setAttribute('aria-label', `Пример ${index + 1}`);
+            dot.setAttribute('aria-label', `${t('Пример', 'Example')} ${index + 1}`);
             if (index === 0) dot.setAttribute('aria-current', 'true');
             dotsWrap.appendChild(dot);
             return dot;
@@ -430,7 +591,7 @@
                     a.remove();
 
                     setTimeout(() => URL.revokeObjectURL(objectUrl), 1500);
-                    showToast('Файл скачивается ♡');
+                    showToast(t('Файл скачивается ♡', 'File download started ♡'));
                 } else {
                     window.location.href = url;
                 }
@@ -457,8 +618,8 @@
         const fallback = document.createElement('div');
         fallback.className = 'prompt-preview-fallback';
         fallback.setAttribute('role', 'img');
-        fallback.setAttribute('aria-label', 'Превью недоступно');
-        fallback.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-image"/></svg><span>Превью недоступно</span>';
+        fallback.setAttribute('aria-label', t('Превью недоступно', 'Preview unavailable'));
+        fallback.innerHTML = `<svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-image"/></svg><span>${t('Превью недоступно', 'Preview unavailable')}</span>`;
         preview.appendChild(fallback);
     });
 

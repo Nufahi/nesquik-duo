@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Marmelad&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css?v=9">
+    <link rel="stylesheet" href="css/style.css?v=10">
     <!-- Задача 3: маскот первого экрана грузим максимально рано -->
     <link rel="preload" as="image" href="новые картинки на главную стр/IMG_20260715_134318_808.png" fetchpriority="high">
 
@@ -23,6 +23,7 @@
                     theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
                 }
                 document.documentElement.setAttribute('data-theme', theme);
+                document.documentElement.setAttribute('data-lang', localStorage.getItem('nd-lang') === 'en' ? 'en' : 'ru');
             } catch (e) { /* приватный режим и т.п. — просто остаёмся на светлой */ }
         })();
     </script>
@@ -123,7 +124,7 @@
     <!-- Навигация -->
     <header class="navbar">
         <a href="#hero" class="logo">
-            <svg class="logo-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-sparkle"/></svg>
+            <img class="logo-image" src="logo.png" alt="" width="32" height="32">
             <span class="logo-text">Nesquik<span class="logo-duo">Duo</span></span>
         </a>
         <nav class="nav-links" id="site-navigation">
@@ -134,6 +135,9 @@
             <a href="#extensions">Расширения</a>
         </nav>
         <div class="nav-actions">
+            <button class="language-toggle" type="button" aria-label="Switch language" title="Switch language">
+                <span class="language-ru">RU</span><span aria-hidden="true">/</span><span class="language-en">ENG</span>
+            </button>
             <button class="theme-toggle" type="button" aria-label="Переключить тему" title="Переключить тему">
                 <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-sun"/></svg>
                 <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-moon"/></svg>
@@ -148,8 +152,7 @@
     <section id="hero" class="hero">
         <div class="hero-content">
             <span class="hero-badge">
-                <svg class="i-inline" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-sparkle"/></svg>
-                пресет для SillyTavern
+                пресеты для SillyTavern
             </span>
             <h1 class="hero-title">
                 <span class="title-gradient">Nesquik Duo</span>
@@ -859,6 +862,106 @@ Rules:
         </div>
 
         <div class="styles-grid">
+            <article class="style-card style-card-new">
+                <div class="style-card-title"><h3>Colored Pencil</h3><span class="new-badge">NEW</span></div>
+                <div class="style-carousel" data-carousel>
+                    <div class="style-slides">
+                        <img class="style-slide is-active" src="стили/Colored Pencil_нов/1.jpeg" alt="Colored Pencil, пример 1" loading="lazy" decoding="async">
+                        <img class="style-slide" src="стили/Colored Pencil_нов/2.jpeg" alt="Colored Pencil, пример 2" loading="lazy" decoding="async">
+                        <img class="style-slide" src="стили/Colored Pencil_нов/3.jpeg" alt="Colored Pencil, пример 3" loading="lazy" decoding="async">
+                        <img class="style-slide" src="стили/Colored Pencil_нов/4.jpeg" alt="Colored Pencil, пример 4" loading="lazy" decoding="async">
+                        <img class="style-slide" src="стили/Colored Pencil_нов/5.jpeg" alt="Colored Pencil, пример 5" loading="lazy" decoding="async">
+                    </div>
+                    <button class="carousel-arrow carousel-prev" type="button" aria-label="Предыдущий пример">‹</button>
+                    <button class="carousel-arrow carousel-next" type="button" aria-label="Следующий пример">›</button>
+                    <div class="carousel-dots" aria-label="Выбор примера"></div>
+                </div>
+                <pre class="code-block"><code id="style-colored-pencil">STYLE LOCK (append verbatim): "Vivid chromatic fashion illustration combining energetic fine-ink sketching, saturated colored pencil and bright alcohol-marker accents. Fine broken contours, scratchy construction strokes and delicate cross-hatching remain visible beneath confident layers of intense color. Skin uses luminous peach, coral and warm pink planes contrasted by clear cyan, cobalt and violet shadow accents. Hair forms a bold high-chroma graphic mass filled with overlapping scribbled strokes, sharp color variation and bright directional highlights. Clothing uses deep saturated color blocks energized by contrasting pencil marks. Colors remain clean, juicy and luminous, with strong warm–cool contrast and crisp chromatic separation rather than muted blending. Facial features are delicately expressive, with emphasized lashes and lips and restrained dimensional modeling. Preserve the spontaneous hand-drawn sketchbook character, each character’s identity and a vivid scene-adaptive palette."
+
+NEGATIVE (append verbatim): "dull muted palette, grey or muddy color mixing, faded vintage tint, washed-out paper, photorealistic rendering, smoothly modeled face, airbrushed gradients, thick uniform outlines, glossy 3D finish, text, logo, watermark, signature"</code></pre>
+                <button class="copy-btn copy-btn-full" type="button" data-copy="style-colored-pencil"><svg class="i-inline" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-copy"/></svg><span class="copy-btn-label">копировать стиль</span></button>
+            </article>
+
+            <article class="style-card style-card-new">
+                <div class="style-card-title"><h3>Crayon Drag</h3><span class="new-badge">NEW</span></div>
+                <div class="style-carousel" data-carousel>
+                    <div class="style-slides">
+                        <img class="style-slide is-active" src="стили/Crayon drag_нов/1.jpeg" alt="Crayon Drag, пример 1" loading="lazy" decoding="async">
+                        <img class="style-slide" src="стили/Crayon drag_нов/2.jpeg" alt="Crayon Drag, пример 2" loading="lazy" decoding="async">
+                        <img class="style-slide" src="стили/Crayon drag_нов/3.jpeg" alt="Crayon Drag, пример 3" loading="lazy" decoding="async">
+                        <img class="style-slide" src="стили/Crayon drag_нов/4.jpeg" alt="Crayon Drag, пример 4" loading="lazy" decoding="async">
+                        <img class="style-slide" src="стили/Crayon drag_нов/5.jpeg" alt="Crayon Drag, пример 5" loading="lazy" decoding="async">
+                    </div>
+                    <button class="carousel-arrow carousel-prev" type="button" aria-label="Предыдущий пример">‹</button>
+                    <button class="carousel-arrow carousel-next" type="button" aria-label="Следующий пример">›</button>
+                    <div class="carousel-dots" aria-label="Выбор примера"></div>
+                </div>
+                <pre class="code-block"><code id="style-crayon-drag">STYLE LOCK (append verbatim): "Flat tactile character illustration made from broad oil-pastel, wax-crayon and dry-pigment marks on rough paper. Figure, face, hair, clothing and background share the same visibly handmade surface treatment. Forms are assembled from a small number of broad matte color shapes with abrupt, rubbed transitions and exposed paper grain. The face is interpreted as a flat illustrated mask of two or three restrained tonal areas; cheekbones, nose, jaw and lips are indicated by sparse pigment marks rather than smoothly modeled anatomy. Crayon drag, smudged pastel, chunky opaque strokes and imperfect overlapping color remain clearly visible across the face itself. Hair is a large graphic mass broken by a few sweeping chalky highlights. Deep colors remain velvety and saturated, with intimate close framing and a scene-adaptive palette."
+
+NEGATIVE (append verbatim): "realistically modeled face, sculpted cheekbones or nose, smooth skin gradients, polished digital portrait, cinematic illumination, photographic depth, detailed individual hair strands, glossy finish, 3D rendering, text, logo, watermark, signature"</code></pre>
+                <button class="copy-btn copy-btn-full" type="button" data-copy="style-crayon-drag"><svg class="i-inline" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-copy"/></svg><span class="copy-btn-label">копировать стиль</span></button>
+            </article>
+
+            <article class="style-card style-card-new">
+                <div class="style-card-title"><h3>Elegant Chinese</h3><span class="new-badge">NEW</span></div>
+                <div class="style-carousel" data-carousel>
+                    <div class="style-slides">
+                        <img class="style-slide is-active" src="стили/Elegant Chinese_нов/1.jpeg" alt="Elegant Chinese, пример 1" loading="lazy" decoding="async">
+                        <img class="style-slide" src="стили/Elegant Chinese_нов/2.jpeg" alt="Elegant Chinese, пример 2" loading="lazy" decoding="async">
+                        <img class="style-slide" src="стили/Elegant Chinese_нов/3.jpeg" alt="Elegant Chinese, пример 3" loading="lazy" decoding="async">
+                        <img class="style-slide" src="стили/Elegant Chinese_нов/4.jpeg" alt="Elegant Chinese, пример 4" loading="lazy" decoding="async">
+                        <img class="style-slide" src="стили/Elegant Chinese_нов/5.jpeg" alt="Elegant Chinese, пример 5" loading="lazy" decoding="async">
+                    </div>
+                    <button class="carousel-arrow carousel-prev" type="button" aria-label="Предыдущий пример">‹</button>
+                    <button class="carousel-arrow carousel-next" type="button" aria-label="Следующий пример">›</button>
+                    <div class="carousel-dots" aria-label="Выбор примера"></div>
+                </div>
+                <pre class="code-block"><code id="style-elegant-chinese">STYLE LOCK (append verbatim): "Elegant Chinese guofeng manhua illustration with a refined romantic atmosphere. Graceful character design with mature softly elongated facial structure, narrow expressive almond-shaped eyes, a delicate nose and a subtle restrained smile. Hair is arranged in flowing calligraphic masses with fine tapering strands and restrained cool highlights. Clothing is rendered in broad matte color planes with intricate tone-on-tone embroidery inspired by traditional Chinese floral and cloud motifs. Delicate charcoal-grey drawing appears selectively around the face, hair and ornamental details, while most forms are shaped through adjacent color fields rather than heavy outlines. Shading remains shallow and understated, preserving a flat illustrated elegance. The surrounding architecture and foliage dissolve into translucent ink-wash textures, misty pigment blooms and softly broken brushwork. Muted jade, ink-black, porcelain white and small cinnabar accents adapt naturally to the scene without overriding the character’s canonical colors. Quiet poetic mood, balanced negative space and polished Chinese manhua composition."
+
+NEGATIVE (append verbatim): "thick black outlines, Western comic inking, exaggerated anime eyes, moe features, glossy 3D rendering, photorealistic skin, dramatic cinematic modeling, neon palette, cluttered ornament, text, logo, watermark, signature"</code></pre>
+                <button class="copy-btn copy-btn-full" type="button" data-copy="style-elegant-chinese"><svg class="i-inline" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-copy"/></svg><span class="copy-btn-label">копировать стиль</span></button>
+            </article>
+
+            <article class="style-card style-card-new">
+                <div class="style-card-title"><h3>High-Chroma Gothic Shoujo</h3><span class="new-badge">NEW</span></div>
+                <div class="style-carousel" data-carousel>
+                    <div class="style-slides">
+                        <img class="style-slide is-active" src="стили/High-Chroma Gothic Shoujo_нов/1.jpeg" alt="High-Chroma Gothic Shoujo, пример 1" loading="lazy" decoding="async">
+                        <img class="style-slide" src="стили/High-Chroma Gothic Shoujo_нов/2.jpeg" alt="High-Chroma Gothic Shoujo, пример 2" loading="lazy" decoding="async">
+                        <img class="style-slide" src="стили/High-Chroma Gothic Shoujo_нов/3.jpeg" alt="High-Chroma Gothic Shoujo, пример 3" loading="lazy" decoding="async">
+                        <img class="style-slide" src="стили/High-Chroma Gothic Shoujo_нов/4.jpeg" alt="High-Chroma Gothic Shoujo, пример 4" loading="lazy" decoding="async">
+                        <img class="style-slide" src="стили/High-Chroma Gothic Shoujo_нов/5.jpeg" alt="High-Chroma Gothic Shoujo, пример 5" loading="lazy" decoding="async">
+                    </div>
+                    <button class="carousel-arrow carousel-prev" type="button" aria-label="Предыдущий пример">‹</button>
+                    <button class="carousel-arrow carousel-next" type="button" aria-label="Следующий пример">›</button>
+                    <div class="carousel-dots" aria-label="Выбор примера"></div>
+                </div>
+                <pre class="code-block"><code id="style-gothic-shoujo">STYLE LOCK (append verbatim): "High-chroma gothic shoujo illustration with an intense graphic composition and tactile mixed-media surface. The character is constructed from sweeping opaque brush shapes, sharp tapered strokes and densely layered directional marks. Skin remains pale, flat and nearly unshaded, creating a luminous cut-paper contrast against the surrounding dark pigment. Eyes are highly expressive and jewel-like, with intricate lashes, visible iris detail and small wet highlights; the remaining facial features are sparse and delicate. Clothing, ribbons and decorative forms merge rhythmically with the hair into an ornamental silhouette. The background is an abstract field of dry brush drag, grainy pigment, scraped texture and isolated bright accents. Strong asymmetrical cropping, compressed depth and dramatic diagonal movement. Preserve the character’s identity and canonical colors while using an intense scene-adaptive palette with deep saturated darks and electric contrasting accents."
+
+NEGATIVE (append verbatim): "realistically modeled face, smooth skin gradients, photorealism, cinematic depth, airbrushed blending, individually rendered hair strands, glossy 3D finish, pastel low-contrast palette, empty generic background, thick uniform outline, text, logo, watermark, signature"</code></pre>
+                <button class="copy-btn copy-btn-full" type="button" data-copy="style-gothic-shoujo"><svg class="i-inline" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-copy"/></svg><span class="copy-btn-label">копировать стиль</span></button>
+            </article>
+
+            <article class="style-card style-card-new">
+                <div class="style-card-title"><h3>Y2K Gyaru</h3><span class="new-badge">NEW</span></div>
+                <div class="style-carousel" data-carousel>
+                    <div class="style-slides">
+                        <img class="style-slide is-active" src="стили/Y2K gyaru_нов/1.jpeg" alt="Y2K Gyaru, пример 1" loading="lazy" decoding="async">
+                        <img class="style-slide" src="стили/Y2K gyaru_нов/2.jpeg" alt="Y2K Gyaru, пример 2" loading="lazy" decoding="async">
+                        <img class="style-slide" src="стили/Y2K gyaru_нов/3.jpeg" alt="Y2K Gyaru, пример 3" loading="lazy" decoding="async">
+                        <img class="style-slide" src="стили/Y2K gyaru_нов/4.jpeg" alt="Y2K Gyaru, пример 4" loading="lazy" decoding="async">
+                        <img class="style-slide" src="стили/Y2K gyaru_нов/5.jpeg" alt="Y2K Gyaru, пример 5" loading="lazy" decoding="async">
+                    </div>
+                    <button class="carousel-arrow carousel-prev" type="button" aria-label="Предыдущий пример">‹</button>
+                    <button class="carousel-arrow carousel-next" type="button" aria-label="Следующий пример">›</button>
+                    <div class="carousel-dots" aria-label="Выбор примера"></div>
+                </div>
+                <pre class="code-block"><code id="style-y2k-gyaru">STYLE LOCK (append verbatim): "Y2K gyaru marker-manga illustration with expressive fashion-editorial energy. Loose, tactile ink contours combine with opaque alcohol-marker and gouache-like color strokes, leaving visible directional brush marks, uneven pigment overlap and pale paper showing through. Faces have dramatically emphasized glossy dark eyes, dense separated lashes, delicately sketched features, softly glossy lips and vivid blush built from fine vertical pencil hatching across the cheeks and nose. Hair is shaped with broad graphic color masses, broken highlight strokes and sparse strand lines. Skin and clothing use simplified blocks of warm color with restrained dimensional shading rather than smooth gradients. Dynamic close framing, playful foreshortened hands, expressive poses, bold accessories and Y2K fashion attitude. Preserve each character’s identity and scene-specific palette while translating them into this tactile hand-colored manga technique."
+
+NEGATIVE (append verbatim): "outlined coloring-book appearance, uniformly enclosed shapes, comic-book inking, polished cel shading, smooth airbrushed rendering, photorealistic skin, 3D gloss, text, logo, watermark, signature"</code></pre>
+                <button class="copy-btn copy-btn-full" type="button" data-copy="style-y2k-gyaru"><svg class="i-inline" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-copy"/></svg><span class="copy-btn-label">копировать стиль</span></button>
+            </article>
+
             <article class="style-card">
                 <h3>Velvet Fog</h3>
                 <div class="style-carousel" data-carousel>
@@ -1179,6 +1282,6 @@ NEGATIVE (append verbatim): "color, painted or airbrushed rendering, smooth gray
     </div>
 
     <script src="js/image-presets.js?v=1"></script>
-    <script src="js/main.js?v=6"></script>
+    <script src="js/main.js?v=7"></script>
 </body>
 </html>

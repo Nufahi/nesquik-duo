@@ -23,6 +23,7 @@ window.NESQUIK_IMAGE_PRESETS = [
         title: 'Камтиночный!!! пресет',
         type: 'image-preset',
         description: 'Пресет для генерации изображений',
+        descriptionEn: 'A preset for image generation',
         version: '',
         downloadUrl: 'Камтиночный!!! пресет.json',
         previewImage: '',
