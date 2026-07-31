@@ -3033,20 +3033,16 @@ button:focus-visible {
 
 .prompt-preview {
     width: 100%;
-    aspect-ratio: 4 / 5;
+    aspect-ratio: auto;
     overflow: hidden;
     border-radius: var(--r-md);
     background: var(--surface-hover);
 }
 
-.prompt-grid-comics .prompt-preview {
-    aspect-ratio: 9 / 16;
-}
-
 .prompt-preview img {
     width: 100%;
-    height: 100%;
-    object-fit: var(--preview-fit, cover);
+    height: auto;
+    object-fit: contain;
     object-position: var(--preview-position, center);
     border-radius: inherit;
 }
