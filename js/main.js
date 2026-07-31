@@ -61,6 +61,8 @@
         'Комикс': 'Comic',
         'Градик подряд': 'Continuous gradient',
         'Градик': 'Gradient',
+        'Градик манхва': 'Gradient manhwa',
+        'Градик манхва подряд': 'Continuous gradient manhwa',
         'копировать весь промпт': 'copy full prompt',
         'Готовые стили для генерации изображений. Листай примеры и копируй текст одним кликом.': 'Ready-made image generation styles. Browse examples and copy the text in one click.',
         'копировать стиль': 'copy style',
@@ -316,6 +318,18 @@
         showToast._t = setTimeout(() => toast.classList.remove('show'), 2200);
     };
 
+    document.querySelectorAll('[data-prompt-src]').forEach(async codeEl => {
+        const copyButton = document.querySelector(`[data-copy="${codeEl.id}"]`);
+        try {
+            const response = await fetch(codeEl.dataset.promptSrc);
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            codeEl.textContent = await response.text();
+            if (copyButton) copyButton.disabled = false;
+        } catch {
+            codeEl.textContent = t('Не удалось загрузить промпт', 'Could not load prompt');
+        }
+    });
+
     document.querySelectorAll('.copy-btn').forEach(btn => {
         btn.addEventListener('click', async () => {
             const targetId = btn.dataset.copy;
@@ -504,7 +518,7 @@
         });
     }
 
-    /* ---------- Карусели примеров стилей ---------- */
+    /* ---------- Карусели примеров ---------- */
     document.querySelectorAll('[data-carousel]').forEach(carousel => {
         const slides = [...carousel.querySelectorAll('.style-slide')];
         const dotsWrap = carousel.querySelector('.carousel-dots');

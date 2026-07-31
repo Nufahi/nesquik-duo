@@ -2434,6 +2434,15 @@ code, pre {
     text-align: center;
 }
 
+.prompt-card-header-new {
+    position: relative;
+    min-height: 28px;
+}
+
+.prompt-card-header-new h4 {
+    padding-inline: 48px;
+}
+
 .prompt-desc {
     font-size: 0.9rem;
     color: var(--ink-soft);
@@ -3053,6 +3062,18 @@ button:focus-visible {
 
 .prompt-grid-solo .prompt-preview img {
     height: 100%;
+    object-fit: cover;
+}
+
+.prompt-carousel {
+    margin-bottom: 16px;
+}
+
+.prompt-carousel .prompt-slides {
+    aspect-ratio: 9 / 16;
+}
+
+.prompt-carousel .style-slide {
     object-fit: cover;
 }
 

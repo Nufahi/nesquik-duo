@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Marmelad&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css?v=12">
+    <link rel="stylesheet" href="css/style.css?v=13">
     <!-- Задача 3: маскот первого экрана грузим максимально рано -->
     <link rel="preload" as="image" href="новые картинки на главную стр/IMG_20260715_134318_808.png" fetchpriority="high">
 
@@ -725,6 +725,54 @@ End every response with:
 
         <div class="prompt-grid prompt-grid-comics">
 
+            <article class="prompt-card prompt-card-new">
+                <div class="prompt-carousel style-carousel" data-carousel>
+                    <div class="prompt-slides style-slides">
+                        <img class="style-slide is-active" src="Градик%20манхва/1.png" alt="Градик манхва, пример 1" loading="lazy" decoding="async">
+                        <img class="style-slide" src="Градик%20манхва/2.png" alt="Градик манхва, пример 2" loading="lazy" decoding="async">
+                        <img class="style-slide" src="Градик%20манхва/3.png" alt="Градик манхва, пример 3" loading="lazy" decoding="async">
+                        <img class="style-slide" src="Градик%20манхва/4.png" alt="Градик манхва, пример 4" loading="lazy" decoding="async">
+                        <img class="style-slide" src="Градик%20манхва/5.png" alt="Градик манхва, пример 5" loading="lazy" decoding="async">
+                    </div>
+                    <button class="carousel-arrow carousel-prev" type="button" aria-label="Предыдущий пример">‹</button>
+                    <button class="carousel-arrow carousel-next" type="button" aria-label="Следующий пример">›</button>
+                    <div class="carousel-dots" aria-label="Выбор примера"></div>
+                </div>
+                <header class="prompt-card-header prompt-card-header-new">
+                    <h4>Градик манхва</h4>
+                    <span class="new-badge">NEW</span>
+                </header>
+                <pre class="code-block"><code id="prompt-img-gradik-manhwa" data-prompt-src="Градик%20манхва/градик%20манхва.txt">Загрузка промпта...</code></pre>
+                <button class="copy-btn copy-btn-full" type="button" data-copy="prompt-img-gradik-manhwa" disabled>
+                    <svg class="i-inline" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-copy"/></svg>
+                    <span class="copy-btn-label">копировать весь промпт</span>
+                </button>
+            </article>
+
+            <article class="prompt-card prompt-card-new">
+                <div class="prompt-carousel style-carousel" data-carousel>
+                    <div class="prompt-slides style-slides">
+                        <img class="style-slide is-active" src="Градик%20%20манхва%20подряд/1.png" alt="Градик манхва подряд, пример 1" loading="lazy" decoding="async">
+                        <img class="style-slide" src="Градик%20%20манхва%20подряд/2.png" alt="Градик манхва подряд, пример 2" loading="lazy" decoding="async">
+                        <img class="style-slide" src="Градик%20%20манхва%20подряд/3.png" alt="Градик манхва подряд, пример 3" loading="lazy" decoding="async">
+                        <img class="style-slide" src="Градик%20%20манхва%20подряд/4.png" alt="Градик манхва подряд, пример 4" loading="lazy" decoding="async">
+                        <img class="style-slide" src="Градик%20%20манхва%20подряд/5.png" alt="Градик манхва подряд, пример 5" loading="lazy" decoding="async">
+                    </div>
+                    <button class="carousel-arrow carousel-prev" type="button" aria-label="Предыдущий пример">‹</button>
+                    <button class="carousel-arrow carousel-next" type="button" aria-label="Следующий пример">›</button>
+                    <div class="carousel-dots" aria-label="Выбор примера"></div>
+                </div>
+                <header class="prompt-card-header prompt-card-header-new">
+                    <h4>Градик манхва подряд</h4>
+                    <span class="new-badge">NEW</span>
+                </header>
+                <pre class="code-block"><code id="prompt-img-gradik-manhwa-sequence" data-prompt-src="Градик%20%20манхва%20подряд/градик%20подряд%20манхва.txt">Загрузка промпта...</code></pre>
+                <button class="copy-btn copy-btn-full" type="button" data-copy="prompt-img-gradik-manhwa-sequence" disabled>
+                    <svg class="i-inline" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-copy"/></svg>
+                    <span class="copy-btn-label">копировать весь промпт</span>
+                </button>
+            </article>
+
             <article class="prompt-card">
                 <div class="prompt-preview">
                     <img src="assets/images/example/%D0%9A%D0%BE%D0%BC%D0%B8%D0%BA%D1%81.jpg" alt="Пример: Комикс" loading="lazy" decoding="async">
@@ -1286,6 +1334,6 @@ NEGATIVE (append verbatim): "color, painted or airbrushed rendering, smooth gray
     </div>
 
     <script src="js/image-presets.js?v=1"></script>
-    <script src="js/main.js?v=7"></script>
+    <script src="js/main.js?v=8"></script>
 </body>
 </html>
