@@ -2394,6 +2394,10 @@ code, pre {
     margin: 0 auto;
 }
 
+.prompt-grid-comics {
+    margin-top: 24px;
+}
+
 .prompt-card {
     background: var(--surface);
     backdrop-filter: blur(12px);
@@ -3029,10 +3033,14 @@ button:focus-visible {
 
 .prompt-preview {
     width: 100%;
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 4 / 5;
     overflow: hidden;
     border-radius: var(--r-md);
     background: var(--surface-hover);
+}
+
+.prompt-grid-comics .prompt-preview {
+    aspect-ratio: 9 / 16;
 }
 
 .prompt-preview img {
