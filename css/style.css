@@ -3047,6 +3047,15 @@ button:focus-visible {
     border-radius: inherit;
 }
 
+.prompt-grid-solo .prompt-preview {
+    aspect-ratio: 16 / 10;
+}
+
+.prompt-grid-solo .prompt-preview img {
+    height: 100%;
+    object-fit: cover;
+}
+
 .prompt-preview-fallback {
     position: absolute;
     inset: 0;
