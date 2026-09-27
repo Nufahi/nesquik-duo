@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Nesquik Duo — для SillyTavern под Claude Opus и другие модели Claude. Версии пресета, регексы, промпты, стили и расширения.">
+    <meta name="description" content="Nesquik Duo — пресеты для SillyTavern под Claude Opus, Sonnet и GPT. Версии пресета, регексы, промпты, стили и расширения.">
     <title>Nesquik Duo · Пресет для SillyTavern</title>
     <link rel="icon" type="image/png" href="logo.png">
     <link rel="apple-touch-icon" href="logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Marmelad&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css?v=13">
+    <link rel="stylesheet" href="css/style.css?v=14">
     <!-- Задача 3: маскот первого экрана грузим максимально рано -->
     <link rel="preload" as="image" href="новые картинки на главную стр/IMG_20260715_134318_808.png" fetchpriority="high">
 
@@ -158,7 +158,7 @@
                 <span class="title-gradient">Nesquik Duo</span>
             </h1>
             <p class="hero-subtitle">
-                Пресет для Claude Opus и других моделей Claude.
+                Пресеты для Claude Opus, Sonnet и GPT.
             </p>
             <div class="hero-buttons">
                 <a href="#version-fresh" class="btn btn-primary">
@@ -174,7 +174,7 @@
             </div>
             <div class="hero-stats">
                 <div class="stat">
-                    <span class="stat-value">v2.5+</span>
+                    <span class="stat-value">v3</span>
                     <span class="stat-label">актуальная версия</span>
                 </div>
                 <div class="stat">
@@ -182,8 +182,8 @@
                     <span class="stat-label">регексов</span>
                 </div>
                 <div class="stat">
-                    <span class="stat-value">4</span>
-                    <span class="stat-label">пресета</span>
+                    <span class="stat-value">7</span>
+                    <span class="stat-label">пресетов</span>
                 </div>
             </div>
         </div>
@@ -215,29 +215,50 @@
 
         <div id="version-cards" class="version-cards">
 
-            <!-- Карточка свежего релиза 2.5 — самая новая, идёт первой -->
-            <article id="version-fresh" class="version-card-new version-card-fresh card-center">
+            <!-- Карточка свежего релиза 3 — самая новая, идёт первой -->
+            <article id="version-fresh" class="version-card-new version-card-fresh">
                 <div class="version-badge badge-fresh">
                     <svg class="i-inline" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-heart"/></svg>
                     fresh
                 </div>
-                <h3>Nesquik Duo 2.5+</h3>
-                <p class="version-desc">Самый свежий релиз пресета под Opus.</p>
+                <h3>Несквик дуо 3 (!)</h3>
+                <p class="version-desc">Самый свежий релиз пресета для Claude Opus 5.</p>
 
                 <div class="version-variants">
                     <div class="variant">
                         <div class="variant-head">
                             <span class="variant-tag tag-latest">latest</span>
-                            <span class="variant-title">v2.5+ · Opus</span>
+                            <span class="variant-title">v3 · Opus 5</span>
                         </div>
                         <div class="variant-actions">
-                            <a href="assets/downloads/Несквик дуо v2.5+.json" class="btn btn-small btn-primary" download>
+                            <a href="assets/downloads/Несквик дуо 3 (!).json" class="btn btn-small btn-primary" download>
                                 <span>Скачать</span>
                                 <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-down"/></svg>
                             </a>
-                            <a href="https://teletype.in/@babachikulya/iZGqDjpmvc5213" class="btn btn-small btn-ghost" target="_blank" rel="noopener">
-                                <span>Гайд</span>
-                                <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-external"/></svg>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Карточка GPT -->
+            <article id="version-gpt" class="version-card-new version-card-gpt">
+                <div class="version-badge badge-gpt">
+                    <svg class="i-inline" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-sparkle"/></svg>
+                    GPT
+                </div>
+                <h3>Несквик дуо gpt v 1</h3>
+                <p class="version-desc">Отдельный пресет для GPT. Лучше всего подходит для GPT 5.6 Sol.</p>
+
+                <div class="version-variants">
+                    <div class="variant">
+                        <div class="variant-head">
+                            <span class="variant-tag tag-latest">latest</span>
+                            <span class="variant-title">v1 · GPT 5.6 Sol</span>
+                        </div>
+                        <div class="variant-actions">
+                            <a href="assets/downloads/Несквик дуо gpt v 1.json" class="btn btn-small btn-primary" download>
+                                <span>Скачать</span>
+                                <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-down"/></svg>
                             </a>
                         </div>
                     </div>
@@ -273,7 +294,7 @@
                 </div>
             </article>
 
-            <!-- Карточка Opus (старые версии v2 и v1, на 4.6) -->
+            <!-- Карточка Opus (прошлые версии на 4.6) -->
             <article class="version-card-new">
                 <div class="version-badge">
                     <svg class="i-inline" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-sparkle"/></svg>
@@ -283,6 +304,23 @@
                 <p class="version-desc">Прошлые версии пресета для Claude Opus 4.6</p>
 
                 <div class="version-variants">
+                    <!-- v2.5+ -->
+                    <div class="variant">
+                        <div class="variant-head">
+                            <span class="variant-title">v2.5+ · Opus</span>
+                        </div>
+                        <div class="variant-actions">
+                            <a href="assets/downloads/Несквик дуо v2.5+.json" class="btn btn-small btn-primary" download>
+                                <span>Скачать</span>
+                                <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-down"/></svg>
+                            </a>
+                            <a href="https://teletype.in/@babachikulya/iZGqDjpmvc5213" class="btn btn-small btn-ghost" target="_blank" rel="noopener">
+                                <span>Гайд</span>
+                                <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-external"/></svg>
+                            </a>
+                        </div>
+                    </div>
+
                     <!-- v2.5 -->
                     <div class="variant">
                         <div class="variant-head">
@@ -343,7 +381,7 @@
                 <svg class="i-inline" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-image"/></svg>
                 Пресеты для генерации изображений
             </h3>
-            <p class="image-presets-note">Отдельный тип пресетов, не относящийся к версиям Claude.</p>
+            <p class="image-presets-note">Отдельный тип пресетов для генерации изображений.</p>
             <div id="image-presets-grid" class="image-presets-grid" aria-live="polite"></div>
         </div>
     </section>
@@ -1303,7 +1341,7 @@ NEGATIVE (append verbatim): "color, painted or airbrushed rendering, smooth gray
                     <svg class="logo-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-sparkle"/></svg>
                     <span class="logo-text">Nesquik<span class="logo-duo">Duo</span></span>
                 </div>
-                <p class="footer-tagline">Пресет для SillyTavern под Claude Opus и другие модели Claude</p>
+                <p class="footer-tagline">Пресеты для SillyTavern под Claude Opus, Sonnet и GPT</p>
             </div>
             <div class="footer-links">
                 <h4>Навигация</h4>
@@ -1334,6 +1372,6 @@ NEGATIVE (append verbatim): "color, painted or airbrushed rendering, smooth gray
     </div>
 
     <script src="js/image-presets.js?v=1"></script>
-    <script src="js/main.js?v=8"></script>
+    <script src="js/main.js?v=9"></script>
 </body>
 </html>

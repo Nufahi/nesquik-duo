@@ -1694,17 +1694,8 @@ code, pre {
     margin: 0 auto;
 }
 
-/* Свежая карточка — соло, по центру сверху (новое впереди) */
-.version-card-new.card-center {
-    grid-column: 1 / -1;
-    max-width: 540px;
-    justify-self: center;
-    width: 100%;
-}
-
 @media (max-width: 760px) {
     .version-cards { grid-template-columns: 1fr; }
-    .version-card-new.card-center { max-width: 100%; }
 }
 
 .version-card-new {
@@ -3021,6 +3012,31 @@ button:focus-visible {
 
 .version-badge.badge-fresh {
     background: linear-gradient(135deg, var(--wine), var(--raspberry), var(--powder-pink));
+}
+
+/* GPT — мятно-бирюзовый градиент в обеих темах */
+.version-card-gpt {
+    --grad-main: linear-gradient(135deg, #246b65, #397b91);
+    --grad-btn: var(--grad-main);
+    --grad-btn-hover: linear-gradient(135deg, #1d5954, #30697d);
+    background: linear-gradient(135deg, rgba(106, 201, 168, 0.2), transparent 65%, rgba(104, 190, 211, 0.18)), var(--surface);
+    border-color: rgba(69, 154, 140, 0.4);
+}
+
+.version-card-gpt::before {
+    background: linear-gradient(90deg, #6ac9a8, #459a8c, #68bed3);
+}
+
+.version-badge.badge-gpt {
+    background: var(--grad-main);
+}
+
+.version-card-gpt .btn-primary {
+    box-shadow: 0 12px 32px rgba(36, 107, 101, 0.25);
+}
+
+.version-card-gpt .btn-primary:hover {
+    box-shadow: 0 14px 34px rgba(36, 107, 101, 0.32);
 }
 
 .copy-btn,

@@ -15,21 +15,24 @@
         'Стили': 'Styles',
         'Расширения': 'Extensions',
         'пресеты для SillyTavern': 'presets for SillyTavern',
-        'Пресет для Claude Opus и других моделей Claude.': 'A preset for Claude Opus and other Claude models.',
+        'Пресеты для Claude Opus, Sonnet и GPT.': 'Presets for Claude Opus, Sonnet, and GPT.',
         'Скачать последнюю версию': 'Download latest version',
         'Все версии': 'All versions',
         'актуальная версия': 'current version',
         'регексов': 'regex scripts',
-        'пресета': 'presets',
+        'пресетов': 'presets',
         'Версии пресета': 'Preset versions',
         'Выбирай нужный вариант и скачивай файл одним кликом.': 'Choose the version you need and download it in one click.',
-        'Самый свежий релиз пресета под Opus.': 'The latest preset release for Opus.',
+        'Несквик дуо 3 (!)': 'Nesquik Duo 3 (!)',
+        'Самый свежий релиз пресета для Claude Opus 5.': 'The latest preset release for Claude Opus 5.',
+        'Несквик дуо gpt v 1': 'Nesquik Duo GPT v1',
+        'Отдельный пресет для GPT. Лучше всего подходит для GPT 5.6 Sol.': 'A dedicated preset for GPT. Best suited for GPT 5.6 Sol.',
         'Отдельный пресет, заточенный под Claude Sonnet 4.6': 'A dedicated preset optimized for Claude Sonnet 4.6',
         'Прошлые версии пресета для Claude Opus 4.6': 'Previous preset versions for Claude Opus 4.6',
         'Скачать': 'Download',
         'Гайд': 'Guide',
         'Пресеты для генерации изображений': 'Image generation presets',
-        'Отдельный тип пресетов, не относящийся к версиям Claude.': 'A separate preset type unrelated to Claude versions.',
+        'Отдельный тип пресетов для генерации изображений.': 'A separate preset type for image generation.',
         'Регулярные выражения': 'Regular expressions',
         'Готовые регексы под пресет: одни делают чат красивым, другие чистят промпт от лишнего, чтобы не тратить токены. Скачивай и импортируй в SillyTavern через': 'Ready-made regex scripts for the preset: some improve the chat layout, while others clean unnecessary content from prompts to save tokens. Download and import them into SillyTavern via',
         'Сообщения': 'Messages',
@@ -87,7 +90,7 @@
         'все-все, кто использует пресет': 'everyone who uses the preset',
         'за то, что вы есть ♡': 'for being here ♡',
         '· конец ·': '· the end ·',
-        'Пресет для SillyTavern под Claude Opus и другие модели Claude': 'A SillyTavern preset for Claude Opus and other Claude models',
+        'Пресеты для SillyTavern под Claude Opus, Sonnet и GPT': 'SillyTavern presets for Claude Opus, Sonnet, and GPT',
         'Навигация': 'Navigation',
         'Ссылки': 'Links',
         'Благодарности': 'Credits',
@@ -100,8 +103,8 @@
     const translatableAttributes = ['aria-label', 'title', 'alt', 'content'];
     const translateAttribute = (value) => {
         if (translations.has(value)) return translations.get(value);
-        if (value.startsWith('Nesquik Duo — для SillyTavern')) {
-            return 'Nesquik Duo for SillyTavern, Claude Opus, and other Claude models. Preset versions, regex scripts, prompts, styles, and extensions.';
+        if (value.startsWith('Nesquik Duo — пресеты для SillyTavern')) {
+            return 'Nesquik Duo presets for SillyTavern, Claude Opus, Sonnet, and GPT. Preset versions, regex scripts, prompts, styles, and extensions.';
         }
         return value
             .replace('Переключить тему', 'Toggle theme')
